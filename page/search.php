@@ -9,6 +9,7 @@
     $userLoggedIn = $_SESSION['uID'];
     $uName = $_SESSION['uName'];
   }
+  $patSearch = $_POST['patSearch'];
 ?>
 
 <!DOCTYPE html>
@@ -118,11 +119,14 @@
       </div>
     </div>
     <div id="categoryhead">
-     <p><?php echo "<h1>".$_GET['cat']."</h1>"?>
+     <p><?php echo "<h1>Search Results For '".$patSearch."'</h1>"?>
     </div>
+    <br>
     <?php
-      $sql = $conn->prepare("select * from users, categories where users.categoryid = categories.categoryid and categories.categoryname like ?");
-      $sql->bind_param("s",$_GET['cat']);
+      $likePS = '%'.$patSearch.'%';
+      //echo $likePS;
+      $sql = $conn->prepare("select * from users, categories where users.categoryid = categories.categoryid and (users.username like ? or users.description like ?)");
+      $sql->bind_param('ss',$likePS,$likePS);
 
       $sql->execute();
       $res = $sql->get_result();

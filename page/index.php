@@ -88,8 +88,8 @@ body {font-family: Arial;}
   ?>
   <a href="categories.php"><button class="tablinks" onclick="">Explore Creators</button></a>
   <div style="float: right; box-sizing: border-box;">
-   <form action="/action_page.php">
-     <input type="text" placeholder="Search.." name="search">
+   <form action="search.php" method="post">
+     <input type="text" placeholder="Search.." name="patSearch">
      <button type="submit">search</button>
    </form>
   </div>

@@ -90,9 +90,9 @@ body {font-family: Arial;}
     <a href="login.html"><button class="tablinks" onclick=""/>Log In</button></a>
     <a href="categories.html"><button class="tablinks" onclick="">Explore Creators</button></a> 	
     <div style="float: right; box-sizing: border-box;">
-      <form action="/action_page.php">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit">search</button>
+      <form action="search.php" method="post">
+        <input type="text" placeholder="Search.." name="patSearch">
+        <button type="submit">search</button>
       </form>
     </div>
   </div>
