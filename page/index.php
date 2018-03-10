@@ -86,7 +86,7 @@ body {font-family: Arial;}
           echo "<a href=\"signup.php\"><button class=\"tablinks\" onclick=\"\">Sign Up</button></a>";
       }
   ?>
-  <a href="categories.html"><button class="tablinks" onclick="">Explore Creators</button></a>
+  <a href="categories.php"><button class="tablinks" onclick="">Explore Creators</button></a>
   <div style="float: right; box-sizing: border-box;">
    <form action="/action_page.php">
      <input type="text" placeholder="Search.." name="search">

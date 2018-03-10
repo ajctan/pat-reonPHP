@@ -1,3 +1,16 @@
+<?php
+  include '../php/dbh.php';
+  session_start();
+
+  $userLoggedIn = 0;
+  $uType = 2;
+  $uName = "";
+  if(isset($_SESSION['uID'])){
+    $userLoggedIn = $_SESSION['uID'];
+    $uName = $_SESSION['uName'];
+  }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -86,9 +99,16 @@
     <body>
     <div class="tab" >
       <a href="index.php"><button class="tablinks" onclick="" style="float: left;">PAT-REON</button></a>
-
-       <a href="login.html"><button class="tablinks" onclick="">log In</button></a>
-      <a href="signup.php"><button class="tablinks" onclick="">Sign Up</button></a>
+  <?php
+            
+      if($userLoggedIn != 0){
+          echo "<a href=\"profile.html\"><button class=\"tablinks\" onclick=\"\">".$uName."</button></a>";
+          echo "<a href=\"../php/signOut.php\"><button class=\"tablinks\" onclick=\"\">Sign out</button></a>";
+      }else{
+          echo "<a href=\"login.html\"><button class=\"tablinks\" onclick=\"\">log In</button></a>";
+          echo "<a href=\"signup.php\"><button class=\"tablinks\" onclick=\"\">Sign Up</button></a>";
+      }
+  ?>
       <a href="categories.html"><button class="tablinks" onclick="">Explore Creators</button></a>
       <div style="float: right; box-sizing: border-box;">
        <form action="/action_page.php">
