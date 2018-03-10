@@ -121,25 +121,25 @@ body {font-family: Arial;}
 </div>
 <table align="center">
       <tr>
-        <td><a href="category.php"><button class="exploretab" onclick="">Video & film</button></a></td>
-        <td><a href="category.php"><button class="exploretab" onclick="">Comics</button></a></td>
-        <td><button class="exploretab" onclick="">Podcasts</button></td>
-        <td><button class="exploretab" onclick="">Comedy</button></td>
-        <td><button class="exploretab" onclick="">Crafts & DIY</button></td>
+        <td><button class="exploretab" onclick="location.href='category.php?cat=Video and Film';">Video and film</button></a></td>
+        <td><button class="exploretab" onclick="location.href='category.php?cat=Comics';">Comics</button></a></td>
+        <td><button class="exploretab" onclick="location.href='category.php?cat=Podcasts';">Podcasts</button></td>
+        <td><button class="exploretab" onclick="location.href='category.php?cat=Comedy';">Comedy</button></td>
+        <td><button class="exploretab" onclick="location.href='category.php?cat=Crafts and DIY';">Crafts and DIY</button></td>
       </tr>
       <tr>
-        <td><button class="exploretab" onclick="">Music</button></td>
-        <td><button class="exploretab" onclick="">Drawing & Painting</button></td>
-        <td><button class="exploretab" onclick="">Games</button></td>
-        <td><button class="exploretab" onclick="">Science</button></td>
-        <td><button class="exploretab" onclick="">Dance & Theater</button></td>
+        <td><button class="exploretab" onclick="location.href='category.php?cat=Music';">Music</button></td>
+        <td><button class="exploretab" onclick="location.href='category.php?cat=Drawing and Painting';">Drawing and Painting</button></td>
+        <td><button class="exploretab" onclick="location.href='category.php?cat=Games';">Games</button></td>
+        <td><button class="exploretab" onclick="location.href='category.php?cat=Science';">Science</button></td>
+        <td><button class="exploretab" onclick="location.href='category.php?cat=Dance and Theater';">Dance and Theater</button></td>
       </tr>
       <tr>
-        <td><button class="exploretab" onclick="">Writing</button></td>
-        <td><button class="exploretab" onclick="">Animation</button></td>
-        <td><button class="exploretab" onclick="">Photography</button></td>
-        <td><button class="exploretab" onclick="">Education</button></td>
-        <td><button class="exploretab" onclick="">All</button></td>
+        <td><button class="exploretab" onclick="location.href='category.php?cat=Writing';">Writing</button></td>
+        <td><button class="exploretab" onclick="location.href='category.php?cat=Animation';">Animation</button></td>
+        <td><button class="exploretab" onclick="location.href='category.php?cat=Photography';">Photography</button></td>
+        <td><button class="exploretab" onclick="location.href='category.php?cat=Education';">Education</button></td>
+        <td><button class="exploretab" onclick="location.href='category.php?cat=All';">All</button></td>
       </tr>
     </table>
 </body>

@@ -109,7 +109,7 @@
           echo "<a href=\"signup.php\"><button class=\"tablinks\" onclick=\"\">Sign Up</button></a>";
       }
   ?>
-      <a href="categories.html"><button class="tablinks" onclick="">Explore Creators</button></a>
+      <a href="categories.php"><button class="tablinks" onclick="">Explore Creators</button></a>
       <div style="float: right; box-sizing: border-box;">
        <form action="/action_page.php">
          <input type="text" placeholder="Search.." name="search">
@@ -118,18 +118,25 @@
       </div>
     </div>
     <div id="categoryhead">
-     <p><h1>Category</h1>
+     <p><?php echo "<h1>".$_GET['cat']."</h1>"?>
     </div>
-    <div id="creators">
-      <a href="profile.php"><button><p><h1>Creator name</h1></p>
-      <p>Content Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p></button></a>
-    </div>
-    <div id="creators">
-      <a href="profile.php"><button><p><h1>Creator name</h1></p>
-      <p>Content Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p></button></a>
-    </div>
-    <div id="creators">
-      <a href="profile.php"><button><p><h1>Creator name</h1></p>
-      <p>Content Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p></button></a>
-    </div>
+    <?php
+      $sql = $conn->prepare("select * from users, categories where users.categoryid = categories.categoryid and categories.categoryname like ?");
+      $sql->bind_param("s",$_GET['cat']);
+
+      $sql->execute();
+      $res = $sql->get_result();
+      $row = $res->fetch_assoc();
+      if($row['username'] == null){
+        echo "<h1 align=\"center\">No Results Found</h1>";
+      }else{
+        echo 
+        "<div id=\"creators\">
+          <button onclick=\"location.href='profile.php?un=".$row['username']."';\" style=\"width:100%\"><p><h1>".$row['username']."</h1></p>
+          <p>".$row['description']."</p></button></a>
+        </div>";
+      }
+
+
+    ?>
 </html>
