@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body {font-family: Arial;}
+
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+        background-color: inherit;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+      text-align:center;
+      float: right;
+
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+        background-color: #ddd;
+
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+        background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+
+    }
+
+    .tab input{
+      background: #fff;
+      border-radius: 5px;
+      display: inline-block;
+      height: 25px;
+      margin: 0;
+      padding: 2.5px;
+      position: relative;
+      transform: translateY(25%);
+      width: 250px;
+    }
+    #categoryhead{
+        display: block;
+        border:none;
+        outline: none;
+        text-align: center;
+        background-color: #ccc;
+        padding: 10px;
+      }
+      #creators{
+        display: block;
+        border:ridge;
+        outline: none;
+        text-align: center;
+        width: 75%;
+        margin: auto;
+        background-color: #dae4f2;
+      }
+      #creators button{
+        border-color: #dae4f2;
+       } 
+      #creators button:hover{
+        background-color: #c2d4ed;
+      }
+    </style>
+    </head>
+    <body>
+    <div class="tab" >
+      <a href="index.php"><button class="tablinks" onclick="" style="float: left;">PAT-REON</button></a>
+
+       <a href="login.html"><button class="tablinks" onclick="">log In</button></a>
+      <a href="signup.php"><button class="tablinks" onclick="">Sign Up</button></a>
+      <a href="categories.html"><button class="tablinks" onclick="">Explore Creators</button></a>
+      <div style="float: right; box-sizing: border-box;">
+       <form action="/action_page.php">
+         <input type="text" placeholder="Search.." name="search">
+         <button type="submit">search</button>
+       </form>
+      </div>
+    </div>
+    <div id="categoryhead">
+     <p><h1>Category</h1>
+    </div>
+    <div id="creators">
+      <a href="profile.php"><button><p><h1>Creator name</h1></p>
+      <p>Content Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p></button></a>
+    </div>
+    <div id="creators">
+      <a href="profile.php"><button><p><h1>Creator name</h1></p>
+      <p>Content Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p></button></a>
+    </div>
+    <div id="creators">
+      <a href="profile.php"><button><p><h1>Creator name</h1></p>
+      <p>Content Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p></button></a>
+    </div>
+</html>

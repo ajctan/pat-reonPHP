@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {font-family: Arial;}
+#parent {
+   display: table;
+   width: 30%;
+   margin:auto;
+   vertical-align: middle;
+}
+#form_login {
+   display: table-cell;
+   text-align: center;
+   vertical-align: middle;
+   margin:auto;
+
+}
+#form_login input{
+  height: 35px;
+  width: 200px;
+  text-align: center;
+}
+#form_login button{
+  height: 35px;
+  width:170px;
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+  text-align:center;
+  float: right;
+  
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+
+}
+
+.tab input{
+  background: #fff;
+  border-radius: 5px;
+  display: inline-block;
+  height: 25px;
+  margin: 0;
+  padding: 2.5px;
+  position: relative;
+  transform: translateY(25%);
+  width: 250px;
+}
+</style>
+</head>
+<body>
+  <div class="tab" >
+  <a href="index.php"><button class="tablinks" onclick="" style="float: left;">PAT-REON</button></a>
+  
+  <a href="signup.php"><button class="tablinks" onclick=""/>Sign Up</button></a>
+  <a href="categories.html"><button class="tablinks" onclick="">Explore Creators</button></a>   
+  <div style="float: right; box-sizing: border-box;">
+   <form action="/action_page.php">
+     <input type="text" placeholder="Search.." name="search">
+     <button type="submit">search</button>
+   </form>
+  </div>
+
+
+</div>
+<div id="parent">
+    <form id="form_login" action="../php/logIn.php" method="post">
+    <h1>Login</h1>
+    <hr>
+     <p>
+            <input type="text" id="username" name="uname" placeholder="Username" />
+        </p>
+        <p>
+            <input type="password" id="password" name="pword" placeholder="Password" />
+        </p>
+        <p>
+            <button id="submitbutton" type="submit" >Log In</button>
+        </p>
+    </form>
+</div>
+</body>
