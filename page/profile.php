@@ -191,6 +191,8 @@ display: block;
     <a href=""><button class="subscribe" onclick="">subscribe</button></a>
     <p>3rd level patreon</p>
     <a href=""><button class="subscribe" onclick="">subscribe</button></a>
+    <br>
+    <a href=""><button class="subscribe" onclick="">Settings</button></a>
   </th>
   <th id="descripts">
    <p><h1>Description </h1><?php echo $row['description']?><br>
