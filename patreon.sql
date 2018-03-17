@@ -37,7 +37,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,'Video & Film'),(2,'Podcasts'),(3,'Crafts & DIY'),(4,'Drawing & Painting'),(5,'Science'),(6,'Writing'),(7,'Photography'),(8,'Comics'),(9,'Comedy'),(10,'Music'),(11,'Games'),(12,'Dance & Theater'),(13,'Animation'),(14,'Education'),(15,'All');
+INSERT INTO `categories` VALUES (1,'Video and Film'),(2,'Podcasts'),(3,'Crafts and DIY'),(4,'Drawing and Painting'),(5,'Science'),(6,'Writing'),(7,'Photography'),(8,'Comics'),(9,'Comedy'),(10,'Music'),(11,'Games'),(12,'Dance and Theater'),(13,'Animation'),(14,'Education'),(15,'All');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,7 +51,7 @@ DROP TABLE IF EXISTS `contents`;
 CREATE TABLE `contents` (
   `contentid` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) NOT NULL,
-  `content_file` LONGBLOB DEFAULT NULL,
+  `content_file` longblob,
   `content_message` varchar(100) DEFAULT NULL,
   `content_level` int(11) NOT NULL,
   PRIMARY KEY (`contentid`),
@@ -133,4 +133,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-05 22:34:42
+-- Dump completed on 2018-03-17 15:49:02
