@@ -28,8 +28,9 @@
 			$uRegCat = $res->fetch_assoc();
 			$sql->close();
 
+			$catStr = "I provide content under the \"".$_POST['cat']."\" category!";
 			$sql = $conn->prepare("insert into users(categoryid,username,email,password,description) values(?,?,?,?,?)");
-			$sql->bind_param("issss",$uRegCat,$_POST['regUserName'],$_POST['regEMail'],$_POST['regPassword'],"I provide content under the \"".$_POST['cat']."\" category!");
+			$sql->bind_param("issss",$uRegCat,$_POST['regUserName'],$_POST['regEMail'],$_POST['regPassword'],$catStr);
 			$sql->execute();
 
 			$sql->close();

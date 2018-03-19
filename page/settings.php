@@ -1,3 +1,25 @@
+<?php
+  include '../php/dbh.php';
+  session_start();
+
+  $userLoggedIn = 0;
+  $uType = 2;
+  $uName = "";
+  if(isset($_SESSION['uID'])){
+    $userLoggedIn = $_SESSION['uID'];
+    $uName = $_SESSION['uName'];
+  }else{
+  	header("Location: index.php");
+  }
+  
+  $sql = $conn->prepare("select * from users, categories where users.categoryid = categories.categoryid and username like ?");
+  $sql->bind_param('s',$uName);
+
+  $sql->execute();
+  $res = $sql->get_result();
+  $row = $res->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,8 +124,16 @@ body {font-family: Arial;}
 <body>
   <div class="tab" >
     <a href="index.php"><button class="tablinks" onclick="" style="float: left;">PAT-REON</button></a>
-
-    <a href="index.php"><button class="tablinks" onclick=""/>Save</button></a>
+    <?php
+            
+      if($userLoggedIn != 0){
+          echo "<a href=\"profile.php\"><button class=\"tablinks\" onclick=\"\">".$uName."</button></a>";
+          echo "<a href=\"../php/signOut.php\"><button class=\"tablinks\" onclick=\"\">Sign out</button></a>";
+      }else{
+          echo "<a href=\"login.html\"><button class=\"tablinks\" onclick=\"\">log In</button></a>";
+          echo "<a href=\"signup.php\"><button class=\"tablinks\" onclick=\"\">Sign Up</button></a>";
+      }
+  	?>
     <a href="categories.html"><button class="tablinks" onclick="">Explore Creators</button></a>   
     <div style="float: right; box-sizing: border-box;">
       <form action="search.php" method="post">
@@ -116,20 +146,19 @@ body {font-family: Arial;}
   <div class="setting">
     <div class="profiledets">
       Profile Name:
-      <div id="profname" onclick="clickedname()">DARK FLAME MASTER</div>
+      <div id="profname" onclick="clickedname()"><?php echo $row['username'];?></div>
       <div id="editname">
-        <form>
-          <input type="text" name="name" value="New name">
+        <form action="../php/chName.php" method="post">
+          <input type="text" name="name" placeholder="New Name">
           <button id="submitname" type="submit" >save</button>
         </form>
       </div><br>
 
       Description
-      <div id="descriptions" style="" onclick="clickeddesc()">ORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORAORA</div>
+      <div id="descriptions" style="" onclick="clickeddesc()"><?php echo $row['description'];?></div>
       <div id="editdesc">
-        <form>
-          <textarea name="desc" style="width:831px; height:92px;">
-          </textarea> 
+        <form action="../php/chDesc.php" method="post">
+          <textarea name="desc" style="width:831px; height:92px;"></textarea> 
           <button id="submitdesc" type="submit" >save</button>
         </form>
       </div><br>
@@ -162,9 +191,9 @@ body {font-family: Arial;}
       </span><br><br>
 
       Category:
-      <span id="category" onclick="clickedcate()">Games</span>
+      <span id="category" onclick="clickedcate()"><?php echo $row['categoryname'];?></span>
       <div id="editcate">
-        <form>
+        <form action="../php/chCat.php" method="post">
           <select name="cat">
             <option value="Video & Film">Video & Film</option>
             <option value="Podcasts">Podcasts</option>

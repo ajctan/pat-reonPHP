@@ -6,7 +6,7 @@
 	session_start();
 	$_SESSION['error'] = 1;
 
-	$sql = $conn->prepare("select * from users where username=? and password=?");
+	$sql = $conn->prepare("select * from users where email=? and password=?");
 	$sql->bind_param("ss",$uName,$pWord);
 
 	$sql->execute();

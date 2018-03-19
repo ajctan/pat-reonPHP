@@ -103,7 +103,7 @@ body {font-family: Arial;}
   <?php
             
       if($userLoggedIn != 0){
-          echo "<a href=\"profile.html\"><button class=\"tablinks\" onclick=\"\">".$uName."</button></a>";
+          echo "<button class=\"tablinks\" onclick=\"location.href='profile.php?un=".$uName."';\">".$uName."</button>";
           echo "<a href=\"../php/signOut.php\"><button class=\"tablinks\" onclick=\"\">Sign out</button></a>";
       }else{
           echo "<a href=\"login.html\"><button class=\"tablinks\" onclick=\"\">log In</button></a>";
