@@ -100,6 +100,8 @@
     <body>
     <div class="tab" >
       <a href="index.php"><button class="tablinks" onclick="" style="float: left;">PAT-REON</button></a>
+      <a href="post.html"><button class="tablinks" onclick="" style="float: left;">Create Post</button></a>
+
   <?php
             
       if($userLoggedIn != 0){
