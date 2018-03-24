@@ -66,6 +66,17 @@ body {font-family: Arial;}
     border-top: none;
 
 }
+.tab input{
+  background: #fff;
+  border-radius: 5px;
+  display: inline-block;
+  height: 25px;
+  margin: 0;
+  padding: 2.5px;
+  position: relative;
+  transform: translateY(25%);
+  width: 250px;
+}
 .user{
 display: block;
   margin: 0 auto 10px auto;
@@ -150,7 +161,7 @@ display: block;
 }
 #posts{
   border-style: groove;
-  border-color: #b8b894; 
+  border-color: #b8b894;
 }
 #postimg{
   max-width: 600px;
@@ -236,7 +247,7 @@ display: block;
 <body>
  <div class="tab" >
   <a href="index.php"><button class="tablinks" onclick="" style="float: left;">PAT-REON</button></a>
-  <a href="post.html"><button class="tablinks" onclick="" style="float: left;">Create Post</button>
+  <a href="post.php"><button class="tablinks" onclick="" style="float: left;">Create Post</button>
   <?php
             
       if($userLoggedIn != 0){
