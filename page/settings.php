@@ -93,7 +93,7 @@ body {font-family: Arial;}
 
 }
 
-#editname, #editdesc, #editlvl1, #editlvl2, #editlvl3, #editcate{
+#editname, #editdesc, #editlvl1, #editlvl2, #editlvl3, #editcate, #editpw{
   display: none;
 }
 .profiledets{
@@ -107,7 +107,7 @@ body {font-family: Arial;}
 
 }
 
-#profname, #descriptions, #lvl1, #lvl2, #lvl3, #category{
+#profname, #descriptions, #lvl1, #lvl2, #lvl3, #category, #pw{
   cursor: pointer;
   border: outset;
 }
@@ -215,7 +215,16 @@ body {font-family: Arial;}
 
 
         </form>
-      </div><br>
+      </div><br><br>
+      Password:
+      <span id="pw" onclick="clickedpw()">Change</span>
+      <div id="editpw">
+        <form>
+          Enter old Password<input name="oldpw" type="password"><br>
+          Enter new Password<input name="newpw1" type="password"><br>
+          Enter new Password Again<input name="newpw2" type="password"><br>
+          <button id="submitpw" type="submit">Enter</button>
+        </form>
 
 
     </div>
@@ -263,6 +272,13 @@ body {font-family: Arial;}
       var txt, frm;
       txt = document.getElementById("category");
       frm = document.getElementById("editcate");
+      txt.style.display = "none";
+      frm.style.display = "inline-block";
+    }
+    function clickedpw(){
+      var txt, frm;
+      txt = document.getElementById("pw");
+      frm = document.getElementById("editpw");
       txt.style.display = "none";
       frm.style.display = "inline-block";
     }
