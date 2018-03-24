@@ -90,11 +90,10 @@
     <body>
     <div class="tab" > <a href="index.php">
         <button class="tablinks" onclick="openCity(event, 'London')" style="float: left;">PAT-REON</button></a>
-        <a href="post.html"><button class="tablinks" onclick="" style="float: left;">Create Post</button></a>
-
   <?php
             
       if($userLoggedIn != 0){
+          echo "<a href=\"post.php\"><button class=\"tablinks\" onclick=\"\" style=\"float: left;\">Create Post</button></a>";
           echo "<button class=\"tablinks\" onclick=\"location.href='profile.php?un=".$uName."';\">".$uName."</button>";
           echo "<a href=\"../php/signOut.php\"><button class=\"tablinks\" onclick=\"\">Sign out</button></a>";
       }else{
