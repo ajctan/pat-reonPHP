@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html>
-<body>
 <?php
 $target_dir = "../img";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -39,6 +36,3 @@ if ($uploadOk == 0) {
     }
 }
 ?>
-
-</body>
-</html>

@@ -303,14 +303,27 @@ display: block;
   </th>
   <th id="descripts">
    <p><h1>Description </h1><?php echo $row['description']?><br><br>
-   <div id="posts">
-     <h2 id="poster">Creator name</h2>
-     <div class="popup"><button id="editpost" onclick="myFunction()"><img id="editimg" src="../img/settings.png"></button><br>
-     <span class="popuptext" id="myPopup"><button style="border-style: none;background-color: #555;color: white;cursor: pointer;">Delete</button></span>
-     </div>
-     <center></center><img id="postimg" src="../img/panda.png">
-     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
-   </div>
+   
+     <?php
+        $posts = $conn->prepare("select * from contents where userid = ?");
+        $posts->bind_param("i",$_SESSION['uID']);
+        $posts->execute();
+        $uPosts = $posts->get_result();
+
+        while($postRow = $uPosts->fetch_assoc()){
+          echo "<div id=\"posts\">";
+          echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"myFunction()\"><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
+          echo "<span class=\"popuptext\" id=\"myPopup\"><button style=\"border-style: none;background-color: #555;color: white;cursor: pointer;\">Delete</button></span>";
+          echo "</div>";
+          echo "<center></center><img id=\"postimg\" src=\"data:image/jpeg;base64,".base64_encode( $postRow['content_file'] )."\">";
+          echo "<p>".$postRow['content_message']."</p>";
+          echo "</div>";
+        }
+     ?>
+     
+     
+     <!--<center></center><img id="postimg" src="../img/panda.png">-->
+     
 
   </th>
 
