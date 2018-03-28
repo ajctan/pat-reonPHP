@@ -310,6 +310,13 @@ display: block;
         $posts->execute();
         $uPosts = $posts->get_result();
 
+        if(isset($_SESSION['uID'])){
+          $subs = $conn->prepare("select * from subs where userid = ?");
+          $subs->bind_param("i",$_SESSION['uID']);
+
+        }
+
+
         while($postRow = $uPosts->fetch_assoc()){
           echo "<div id=\"posts\">";
           echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"myFunction()\"><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
