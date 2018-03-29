@@ -282,19 +282,19 @@ display: block;
   <?php
     echo "<p>1st level patreon</p>";
     if($_GET['un'] === $uName)
-      echo "<a href=\"\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
+      echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
     else
-      echo "<a href=\"\"><button class=\"subscribe\" onclick=\"\">subscribe</button></a>";
+      echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\">subscribe</button></a>";
     echo "<p>2nd level patreon</p>";
     if($_GET['un'] === $uName)
-      echo "<a href=\"\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
+      echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
     else
-      echo "<a href=\"\"><button class=\"subscribe\" onclick=\"\">subscribe</button></a>";
+      echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\">subscribe</button></a>";
     echo "<p>3rd level patreon</p>";
     if($_GET['un'] === $uName)
-      echo "<a href=\"\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
+      echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
     else
-      echo "<a href=\"\"><button class=\"subscribe\" onclick=\"\">subscribe</button></a>";
+      echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\">subscribe</button></a>";
 
     if($_GET['un'] === $uName)
       echo "<br> <a href=\"settings.php\"><button class=\"subscribe\" onclick=\"\">Settings</button></a>"
