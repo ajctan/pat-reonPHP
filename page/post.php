@@ -113,16 +113,15 @@
 </div>
     <center><h1>Create Content</h1></center>
     <center><div id="Create">
-        <form action="../php/filetest.php" method="post" enctype="multipart/form-data">
+        <form action="../php/makePost.php" method="post" enctype="multipart/form-data">
             <p>Make Post:</p>
-            <textarea name="message" style="width:90%; height:300px;">
-            </textarea> 
+            <textarea name="message" style="width:90%; height:300px;"></textarea> 
             <p>
               Available to</p>
               <select name="cat">
-                <option value="1st">1st Level Patreon</option>
-                <option value="2nd">2nd Level Patreon</option>
-                <option value="3rd">3rd Level Patreon</option>
+                <option value="1">1st Level Patreon</option>
+                <option value="2">2nd Level Patreon</option>
+                <option value="3">3rd Level Patreon</option>
               </select><br><br>
 
               <p>Select image to upload:</p>

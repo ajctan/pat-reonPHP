@@ -8,6 +8,8 @@
   if(isset($_SESSION['uID'])){
     $userLoggedIn = $_SESSION['uID'];
     $uName = $_SESSION['uName'];
+  }else{
+    header("Location: login.html");
   }
 ?>
 

@@ -340,7 +340,7 @@ display: block;
           switch($postRow['content_level']){
           	case 1:
           		if($patSub1 || $_GET['un'] === $uName){
-          			echo "<center></center><img id=\"postimg\" src=\"data:image/jpeg;base64,".base64_encode( $postRow['content_file'] )."\">";
+          			echo "<center></center><img id=\"postimg\" src=\"data:image/".$postRow['content_ext'].";base64,".base64_encode( $postRow['content_file'] )."\">";
           			echo "<p>".$postRow['content_message']."</p>";
           			break;
           		}
