@@ -334,24 +334,30 @@ display: block;
 
         while($postRow = $uPosts->fetch_assoc()){
           echo "<div id=\"posts\">";
-          echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"myFunction()\"><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
-          echo "<span class=\"popuptext\" id=\"myPopup\"><button style=\"border-style: none;background-color: #555;color: white;cursor: pointer;\">Delete</button></span>";
-          echo "</div>";
           switch($postRow['content_level']){
           	case 1:
           		if($patSub1 || $_GET['un'] === $uName){
+          			echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"myFunction()\"><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
+          			echo "<span class=\"popuptext\" id=\"myPopup\"><button onclick=\"location.href='../php/delPost.php?pid=".$postRow['contentid']."';\"style=\"border-style: none;background-color: #555;color: white;cursor: pointer;\">Delete</button></span>";
+          			echo "</div>";
           			echo "<center></center><img id=\"postimg\" src=\"data:image/".$postRow['content_ext'].";base64,".base64_encode( $postRow['content_file'] )."\">";
           			echo "<p>".$postRow['content_message']."</p>";
           			break;
           		}
           	case 2:
           		if($patSub2 || $_GET['un'] === $uName){
+          			echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"myFunction()\"><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
+          			echo "<span class=\"popuptext\" id=\"myPopup\"><button onclick=\"location.href='../php/delPost.php?pid=".$postRow['contentid']."';\"style=\"border-style: none;background-color: #555;color: white;cursor: pointer;\">Delete</button></span>";
+          			echo "</div>";
           			echo "<center></center><img id=\"postimg\" src=\"data:image/jpeg;base64,".base64_encode( $postRow['content_file'] )."\">";
           			echo "<p>".$postRow['content_message']."</p>";
           			break;
           		}
           	case 3:
           		if($patSub3 || $_GET['un'] === $uName){
+          			echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"myFunction()\"><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
+          			echo "<span class=\"popuptext\" id=\"myPopup\"><button onclick=\"location.href='../php/delPost.php?pid=".$postRow['contentid']."';\"style=\"border-style: none;background-color: #555;color: white;cursor: pointer;\">Delete</button></span>";
+          			echo "</div>";
           			echo "<center></center><img id=\"postimg\" src=\"data:image/jpeg;base64,".base64_encode( $postRow['content_file'] )."\">";
           			echo "<p>".$postRow['content_message']."</p>";
           			break;
