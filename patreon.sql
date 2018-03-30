@@ -121,7 +121,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (100000,11,'dg_kirito','dg_kirito@gmail.com','password','I play LoL all day and my favorite anime is SAO'),(100001,4,'faeruumi','faeruumigmail.com','password','I like drawing and I hate SAO');
+INSERT INTO `users` VALUES (100000,11,'dg_kirito','dg_kirito@gmail.com','password','I play LoL all day and my favorite anime is SAO'),(100001,4,'faeruumi','faeruumi@gmail.com','password','I like drawing and I hate SAO');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -134,4 +134,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-29 16:26:21
+-- Dump completed on 2018-03-30 10:04:58

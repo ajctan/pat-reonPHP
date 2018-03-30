@@ -280,21 +280,43 @@ display: block;
   <tr>
   <th id="patron">
   <?php
+  $patSub1 = FALSE;
+  $patSub2 = FALSE;
+  $patSub3 = FALSE;
+  	if(isset($_SESSION['uID']) && $_GET['un'] != $uName){
+  		$subs = $conn->prepare("select * from subs,users where subs.subbedtoid = users.userid and users.username like ? and subs.userid = ? order by subs.sublevel asc");
+  		$subs->bind_param("si",$_GET['un'],$userLoggedIn);
+  		$subs->execute();
+  		$sqlSub = $subs->get_result();
+  		while($isSub = $sqlSub->fetch_assoc()){
+  			if($isSub['sublevel'] === 1)
+  				$patSub1 = TRUE;
+  			else if($isSub['sublevel'] === 2)
+  				$patSub2 = TRUE;
+  			else if($isSub['sublevel'] === 3){
+  				$patSub3 = TRUE;
+  				break;
+  			}
+  		}
+  	}
     echo "<p>1st level patreon</p>";
-    if($_GET['un'] === $uName)
-      echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
-    else
-      echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\">subscribe</button></a>";
-    echo "<p>2nd level patreon</p>";
-    if($_GET['un'] === $uName)
-      echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
-    else
-      echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\">subscribe</button></a>";
-    echo "<p>3rd level patreon</p>";
-    if($_GET['un'] === $uName)
-      echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
-    else
-      echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\">subscribe</button></a>";
+    if($_GET['un'] === $uName || $patSub1 == TRUE){
+    	echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
+    }else{
+    	echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\">subscribe</button></a>";
+	}
+	echo "<p>2nd level patreon</p>";
+    if($_GET['un'] === $uName || $patSub2 == TRUE){
+    	echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
+    }else{
+    	echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\">subscribe</button></a>";
+	}
+	echo "<p>3rd level patreon</p>";
+    if($_GET['un'] === $uName || $patSub3 == TRUE){
+    	echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
+    }else{
+    	echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\">subscribe</button></a>";
+    }
 
     if($_GET['un'] === $uName)
       echo "<br> <a href=\"settings.php\"><button class=\"subscribe\" onclick=\"\">Settings</button></a>"
@@ -306,7 +328,7 @@ display: block;
    
      <?php
         $posts = $conn->prepare("select * from contents where userid = ?");
-        $posts->bind_param("i",$_SESSION['uID']);
+        $posts->bind_param("i",$row['userid']);
         $posts->execute();
         $uPosts = $posts->get_result();
 
@@ -315,8 +337,29 @@ display: block;
           echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"myFunction()\"><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
           echo "<span class=\"popuptext\" id=\"myPopup\"><button style=\"border-style: none;background-color: #555;color: white;cursor: pointer;\">Delete</button></span>";
           echo "</div>";
-          echo "<center></center><img id=\"postimg\" src=\"data:image/jpeg;base64,".base64_encode( $postRow['content_file'] )."\">";
-          echo "<p>".$postRow['content_message']."</p>";
+          switch($postRow['content_level']){
+          	case 1:
+          		if($patSub1 || $_GET['un'] === $uName){
+          			echo "<center></center><img id=\"postimg\" src=\"data:image/jpeg;base64,".base64_encode( $postRow['content_file'] )."\">";
+          			echo "<p>".$postRow['content_message']."</p>";
+          			break;
+          		}
+          	case 2:
+          		if($patSub2 || $_GET['un'] === $uName){
+          			echo "<center></center><img id=\"postimg\" src=\"data:image/jpeg;base64,".base64_encode( $postRow['content_file'] )."\">";
+          			echo "<p>".$postRow['content_message']."</p>";
+          			break;
+          		}
+          	case 3:
+          		if($patSub3 || $_GET['un'] === $uName){
+          			echo "<center></center><img id=\"postimg\" src=\"data:image/jpeg;base64,".base64_encode( $postRow['content_file'] )."\">";
+          			echo "<p>".$postRow['content_message']."</p>";
+          			break;
+          		}
+          	default:
+          		echo "<center></center><img id=\"postimg\" src=\"../img/headPat.gif\">";
+          		echo "<p>You have not pat this content creator! You must be at least be a level".$postRow['content_level']." sub!</p>";
+          }
           echo "</div>";
         }
      ?>
