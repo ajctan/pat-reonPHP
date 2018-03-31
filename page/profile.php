@@ -301,21 +301,21 @@ display: block;
   	}
     echo "<p>1st level patreon</p>";
     if($_GET['un'] === $uName || $patSub1 == TRUE){
-    	echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
+    	echo "<button class=\"subscribe\" onclick=\"\" disabled>subscribe</button>";
     }else{
-    	echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\">subscribe</button></a>";
+    	echo "<button class=\"subscribe\" onclick=\"location.href='payment.php?sid=1&stun=".$_GET['un']."';\">subscribe</button>";
 	}
 	echo "<p>2nd level patreon</p>";
     if($_GET['un'] === $uName || $patSub2 == TRUE){
     	echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
     }else{
-    	echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\">subscribe</button></a>";
+    	echo "<button class=\"subscribe\" onclick=\"location.href='payment.php?sid=2&stun=".$_GET['un']."';\">subscribe</button>";
 	}
 	echo "<p>3rd level patreon</p>";
     if($_GET['un'] === $uName || $patSub3 == TRUE){
-    	echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
+    	echo "<button class=\"subscribe\" onclick=\"\" disabled>subscribe</button>";
     }else{
-    	echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\">subscribe</button></a>";
+    	echo "<button class=\"subscribe\" onclick=\"location.href='payment.php?sid=3&stun=".$_GET['un']."';\">subscribe</button>";
     }
 
     if($_GET['un'] === $uName)

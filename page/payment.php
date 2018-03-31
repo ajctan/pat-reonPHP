@@ -11,6 +11,8 @@
   }else{
     header("Location: login.html");
   }
+  setcookie("stype",$_GET['sid'],time()+3600,"/");
+  setcookie("stun",$_GET['stun'],time()+3600,"/");
 ?>
 
 <!DOCTYPE html>
@@ -115,14 +117,14 @@ body {font-family: Arial;}
 </div>
 <br><br>
 <div id="payment">
-  <form style="text-align: center;">
+  <form action="../php/sub.php" method="post" style="text-align: center;">
     Card Number<br>
     <input type="text" name="cardnum"><br><br>
     Expiry Date<br>
     <input type="number" name="year" min="1" max="12" placeholder="mm"> / <input type="number" name="month" min="00" max="18" placeholder="yy"><br><br>
     CVV<br>
     <input type="text" name="cardnum"><br><br>
-    <button id="paybutton" type="submit" >Pay $143 & Pat</button>
+    <button id="paybutton" type="submit" >P A T</button>
   </form>
 </div>
 
