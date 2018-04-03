@@ -6,6 +6,8 @@
   $uType = 2;
   $uName = "";
   if(isset($_SESSION['uID'])){
+    if($_SESSION['uID'] == 1)
+      header("Location: index.php");
     $userLoggedIn = $_SESSION['uID'];
     $uName = $_SESSION['uName'];
   }

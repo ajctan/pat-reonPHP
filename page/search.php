@@ -126,7 +126,7 @@
     <?php
       $likePS = '%'.$patSearch.'%';
       //echo $likePS;
-      $sql = $conn->prepare("select * from users, categories where users.categoryid = categories.categoryid and (users.username like ? or users.description like ?)");
+      $sql = $conn->prepare("select * from users, categories where users.userid > 1 and users.categoryid = categories.categoryid and (users.username like ? or users.description like ?)");
       $sql->bind_param('ss',$likePS,$likePS);
 
       $sql->execute();

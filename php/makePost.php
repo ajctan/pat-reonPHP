@@ -1,7 +1,8 @@
 <?php
 	include 'dbh.php';
 	session_start();
-
+	if($_SESSION['uID'] == 1)
+		header("Location: ../page/profile.php?un=".$_SESSION['uName']);
 	if(isset($_FILES['fileToUpload']) && $_POST['message'] != ''){
 		$image = $_FILES['fileToUpload']['tmp_name'];
 		$ext = pathinfo($_FILES['fileToUpload']['name'],PATHINFO_EXTENSION);

@@ -6,11 +6,15 @@
   $uType = 2;
   $uName = "";
   if(isset($_SESSION['uID'])){
+  	if($_SESSION['uID'] == 1)
+  		header("Location: adminpage.php");
+    if($_SESSION['uID'] != 1 && $_GET['un'] == 'patMachine')
+      header("Location: index.php");
     $userLoggedIn = $_SESSION['uID'];
     $uName = $_SESSION['uName'];
   }
 
-  $sql = $conn->prepare("select * from users, categories where users.categoryid = categories.categoryid and users.username like ?");
+  $sql = $conn->prepare("select * from users, categories where users.userid > 1 and users.categoryid = categories.categoryid and users.username like ?");
   $sql->bind_param("s",$_GET['un']);
 
   $sql->execute();
@@ -284,7 +288,7 @@ display: block;
   $patSub2 = FALSE;
   $patSub3 = FALSE;
   	if(isset($_SESSION['uID']) && $_GET['un'] != $uName){
-  		$subs = $conn->prepare("select * from subs,users where subs.subbedtoid = users.userid and users.username like ? and subs.userid = ? order by subs.sublevel asc");
+  		$subs = $conn->prepare("select * from subs,users where users.userid > 1 and subs.subbedtoid = users.userid and users.username like ? and subs.userid = ? order by subs.sublevel asc");
   		$subs->bind_param("si",$_GET['un'],$userLoggedIn);
   		$subs->execute();
   		$sqlSub = $subs->get_result();
@@ -301,21 +305,21 @@ display: block;
   	}
     echo "<p>1st level patreon</p>";
     if($_GET['un'] === $uName || $patSub1 == TRUE){
-    	echo "<button class=\"subscribe\" onclick=\"\" disabled>subscribe</button>";
+    	echo "<button class=\"subscribe\" onclick=\"\" disabled>PAT</button>";
     }else{
-    	echo "<button class=\"subscribe\" onclick=\"location.href='payment.php?sid=1&stun=".$_GET['un']."';\">subscribe</button>";
+    	echo "<button class=\"subscribe\" onclick=\"location.href='payment.php?sid=1&stun=".$_GET['un']."';\">$4.99</button>";
 	}
 	echo "<p>2nd level patreon</p>";
     if($_GET['un'] === $uName || $patSub2 == TRUE){
-    	echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\" disabled>subscribe</button></a>";
+    	echo "<a href=\"payment.php\"><button class=\"subscribe\" onclick=\"\" disabled>PAT</button></a>";
     }else{
-    	echo "<button class=\"subscribe\" onclick=\"location.href='payment.php?sid=2&stun=".$_GET['un']."';\">subscribe</button>";
+    	echo "<button class=\"subscribe\" onclick=\"location.href='payment.php?sid=2&stun=".$_GET['un']."';\">$9.99</button>";
 	}
 	echo "<p>3rd level patreon</p>";
     if($_GET['un'] === $uName || $patSub3 == TRUE){
-    	echo "<button class=\"subscribe\" onclick=\"\" disabled>subscribe</button>";
+    	echo "<button class=\"subscribe\" onclick=\"\" disabled>PAT</button>";
     }else{
-    	echo "<button class=\"subscribe\" onclick=\"location.href='payment.php?sid=3&stun=".$_GET['un']."';\">subscribe</button>";
+    	echo "<button class=\"subscribe\" onclick=\"location.href='payment.php?sid=3&stun=".$_GET['un']."';\">$14.99</button>";
     }
 
     if($_GET['un'] === $uName)
@@ -327,7 +331,7 @@ display: block;
    <p><h1>Description </h1><?php echo $row['description']?><br><br>
    
      <?php
-        $posts = $conn->prepare("select * from contents where userid = ?");
+        $posts = $conn->prepare("select * from contents where userid > 1 and userid = ?");
         $posts->bind_param("i",$row['userid']);
         $posts->execute();
         $uPosts = $posts->get_result();
@@ -337,8 +341,12 @@ display: block;
           switch($postRow['content_level']){
           	case 1:
           		if($patSub1 || $_GET['un'] === $uName){
-          			echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"myFunction()\"><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
-          			echo "<span class=\"popuptext\" id=\"myPopup\"><button onclick=\"location.href='../php/delPost.php?pid=".$postRow['contentid']."';\"style=\"border-style: none;background-color: #555;color: white;cursor: pointer;\">Delete</button></span>";
+                if($_GET['un'] === $uName){
+          			 echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"myFunction()\"><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
+          			 echo "<span class=\"popuptext\" id=\"myPopup\"><button onclick=\"location.href='../php/delPost.php?pid=".$postRow['contentid']."';\"style=\"border-style: none;background-color: #555;color: white;cursor: pointer;\">Delete</button></span>";
+                }else{
+                  echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"\" disabled><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
+                }
           			echo "</div>";
           			echo "<center></center><img id=\"postimg\" src=\"data:image/".$postRow['content_ext'].";base64,".base64_encode( $postRow['content_file'] )."\">";
           			echo "<p>".$postRow['content_message']."</p>";
@@ -346,19 +354,27 @@ display: block;
           		}
           	case 2:
           		if($patSub2 || $_GET['un'] === $uName){
-          			echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"myFunction()\"><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
-          			echo "<span class=\"popuptext\" id=\"myPopup\"><button onclick=\"location.href='../php/delPost.php?pid=".$postRow['contentid']."';\"style=\"border-style: none;background-color: #555;color: white;cursor: pointer;\">Delete</button></span>";
+          			if($_GET['un'] === $uName){
+                 echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"myFunction()\"><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
+                 echo "<span class=\"popuptext\" id=\"myPopup\"><button onclick=\"location.href='../php/delPost.php?pid=".$postRow['contentid']."';\"style=\"border-style: none;background-color: #555;color: white;cursor: pointer;\">Delete</button></span>";
+                }else{
+                  echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"\" disabled><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
+                }
           			echo "</div>";
-          			echo "<center></center><img id=\"postimg\" src=\"data:image/jpeg;base64,".base64_encode( $postRow['content_file'] )."\">";
+          			echo "<center></center><img id=\"postimg\" src=\"data:image/".$postRow['content_ext'].";base64,".base64_encode( $postRow['content_file'] )."\">";
           			echo "<p>".$postRow['content_message']."</p>";
           			break;
           		}
           	case 3:
           		if($patSub3 || $_GET['un'] === $uName){
-          			echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"myFunction()\"><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
-          			echo "<span class=\"popuptext\" id=\"myPopup\"><button onclick=\"location.href='../php/delPost.php?pid=".$postRow['contentid']."';\"style=\"border-style: none;background-color: #555;color: white;cursor: pointer;\">Delete</button></span>";
+          			if($_GET['un'] === $uName){
+                 echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"myFunction()\"><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
+                 echo "<span class=\"popuptext\" id=\"myPopup\"><button onclick=\"location.href='../php/delPost.php?pid=".$postRow['contentid']."';\"style=\"border-style: none;background-color: #555;color: white;cursor: pointer;\">Delete</button></span>";
+                }else{
+                  echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"\" disabled><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
+                }
           			echo "</div>";
-          			echo "<center></center><img id=\"postimg\" src=\"data:image/jpeg;base64,".base64_encode( $postRow['content_file'] )."\">";
+          			echo "<center></center><img id=\"postimg\" src=\"data:image/".$postRow['content_ext'].";base64,".base64_encode( $postRow['content_file'] )."\">";
           			echo "<p>".$postRow['content_message']."</p>";
           			break;
           		}

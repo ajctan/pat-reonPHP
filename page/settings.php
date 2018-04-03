@@ -12,7 +12,7 @@
   	header("Location: index.php");
   }
   
-  $sql = $conn->prepare("select * from users, categories where users.categoryid = categories.categoryid and username like ?");
+  $sql = $conn->prepare("select * from users, categories where users.userid > 1 and users.categoryid = categories.categoryid and username like ?");
   $sql->bind_param('s',$uName);
 
   $sql->execute();

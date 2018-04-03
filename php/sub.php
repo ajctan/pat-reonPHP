@@ -4,7 +4,7 @@
 
 	if(!isset($_SESSION['uID']))
 		header("Location: ../page/index.php");
-	$getUN = $conn->prepare("select * from users where username like ?");
+	$getUN = $conn->prepare("select * from users where userid > 1 and username like ?");
 	$getUN->bind_param("s",$_COOKIE['stun']);
 	$getUN->execute();
 

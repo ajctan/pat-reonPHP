@@ -124,7 +124,19 @@ body {font-family: Arial;}
     <input type="number" name="year" min="1" max="12" placeholder="mm"> / <input type="number" name="month" min="00" max="18" placeholder="yy"><br><br>
     CVV<br>
     <input type="text" name="cardnum"><br><br>
-    <button id="paybutton" type="submit" >P A T</button>
+    <?php
+      switch($_GET['sid']){
+        case 1:
+          echo "<button id=\"paybutton\" type=\"submit\" >Pat for $4.99!</button>";
+          break;
+        case 2:
+          echo "<button id=\"paybutton\" type=\"submit\" >Pat for $9.99!</button>";
+          break;
+        default:
+          echo "<button id=\"paybutton\" type=\"submit\" >Pat for $14.99!</button>";
+          break;
+      }
+    ?>
   </form>
 </div>
 
