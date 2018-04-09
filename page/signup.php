@@ -120,7 +120,7 @@ body {font-family: Arial;}
                 $result = mysqli_query($conn,$sql);
 
                 while($cat = mysqli_fetch_assoc($result)){
-                  echo "<option value=\"".$cat['categoryname']."\">".$cat['categoryname']."</option>";
+                  echo "<option value=\"".$cat['categoryname']."\">".htmlspecialchars($cat['categoryname'])."</option>";
                 }
             ?>
             <!--<option value="Video & Film">Video & Film</option>
