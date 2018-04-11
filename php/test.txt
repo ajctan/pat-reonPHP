@@ -37,3 +37,11 @@
 (test2)100003 Logged in. 04/11/2018 05:07:13 am
 (test2)100003 Log out. 04/11/2018 05:09:56 am
 (test2)100003 Logged in. 04/11/2018 05:11:30 am
+(ihavePats)100002 bcrv347u0a5ngdiql0gtq4kj07:Registered. 04/11/2018 05:51:47 am
+bcrv347u0a5ngdiql0gtq4kj07:(ihavePats)100002 Log out. 04/11/2018 05:51:50 am
+(hiimraf)100003 j931o5r7d1hf849qfr77ddhdse:Registered. 04/11/2018 05:55:15 am
+j931o5r7d1hf849qfr77ddhdse:(hiimraf) Log out. 04/11/2018 05:55:42 am
+(hiimkwak)100004 r8h2cf2n6nkp459hcckutt3l2m:Registered. 04/11/2018 05:56:13 am
+r8h2cf2n6nkp459hcckutt3l2m:(hiimkwak) Log out. 04/11/2018 05:56:38 am
+mevnltoe5p8kkkcjg39ukqavmg:(dg_kirito)100000 Logged in. 04/11/2018 05:56:53 am
+mevnltoe5p8kkkcjg39ukqavmg:(dg_kirito)100000 Log out. 04/11/2018 05:56:54 am
