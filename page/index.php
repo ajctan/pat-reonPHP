@@ -78,7 +78,14 @@ body {font-family: Arial;}
         <button class="tablinks" onclick="openCity(event, 'London')" style="float: left;">PAT-REON</button></a>
 
   <?php
-            
+      if(isset($_SESSION['error']))
+        if($_SESSION['error'] != 0){
+          $_SESSION['error'] = 0;
+          echo '<script type="text/javascript">'; 
+          echo 'alert("One or both of your login details may be incorrect! Please check again");'; 
+          echo 'window.location.href = "login.html";';
+          echo '</script>';
+        }      
       if($userLoggedIn != 0){
           echo "<a href=\"post.php\"><button class=\"tablinks\" onclick=\"\" style=\"float: left;\">Create Post</button></a>";
           echo "<button class=\"tablinks\" onclick=\"location.href='profile.php?un=".htmlspecialchars($uName)."';\">".htmlspecialchars($uName)."</button>";

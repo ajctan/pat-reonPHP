@@ -4,9 +4,6 @@
 
 	$uName = $_POST['uname'];
 	$pWord = scrypt($_POST['pword']);
-        echo '<script language="javascript">';
-        echo 'alert("message successfully sent".$pWord)';
-        echo '</script>';
 	session_start();
 	$_SESSION['error'] = 1;
 
@@ -21,10 +18,8 @@
 		$_SESSION['error'] = 0;
 		$_SESSION['uID'] = $row['userid'];
 		$_SESSION['uName'] = $row['username'];
-		echo "<script type='text/javascript'>alert(\"".$_SESSION['uID'] = $row['userid']."\");</script>";
-	}
 
-        $getULI = $conn->prepare("select * from users where userid > 1 and username like ?");
+		$getULI = $conn->prepare("select * from users where userid > 1 and username like ?");
         $getULI->bind_param("s",$_SESSION['uName']);
         $getULI->execute();
 
@@ -37,6 +32,7 @@
         $txtLogString = session_id().":"."(".$_SESSION['uName'].")".$roLI['userid']." ".$logStringLI."\n";
         fwrite($file,$txtLogString);
         fclose($file);
+	}
 	header("Location: ../page/index.php");
     exit;
 ?>
