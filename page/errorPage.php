@@ -99,7 +99,7 @@ body {font-family: Arial;}
 
 </div>
 
-<center style="font-size: 60px;">Lol MB, there seems to be a mistake! If this error persists, email us at stoptryingtohackusasshole@fuckyou.com</center> 
+<center style="font-size: 60px;">Oops! Something went wrong!</center> 
 <hr>
 
 
