@@ -27,7 +27,7 @@
         $logStringLO ="Changed categories. ".$_GET['id']." ".date('m/d/Y h:i:s a', time());
 
         $file = fopen("test.txt","at");
-        $txtLogString = "(".$_SESSION['uName'].")".$roLO['userid']." ".$logStringLO."\n";
+        $txtLogString = session_id().":"."(".$_SESSION['uName'].")".$roLO['userid']." ".$logStringLO."\n";
         fwrite($file,$txtLogString);
         fclose($file);
 

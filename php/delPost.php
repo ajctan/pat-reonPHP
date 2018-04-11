@@ -20,7 +20,7 @@
                 $reLO = $getULO->get_result();
                 $roLO = $reLO->fetch_assoc();
 
-                $logStringLO ="Delete post. ".date('m/d/Y h:i:s a', time());
+                $logStringLO =session_id().":"."Delete post. ".date('m/d/Y h:i:s a', time());
 
                 $file = fopen("test.txt","at");
                 $txtLogString = "(".$_SESSION['uName'].")".$roLO['userid']." ".$logStringLO."\n";

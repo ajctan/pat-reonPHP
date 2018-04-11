@@ -1,8 +1,12 @@
 <?php
 	include 'dbh.php';
+        include '../php/crypt.php';
 
 	$uName = $_POST['uname'];
-	$pWord = $_POST['pword'];
+	$pWord = scrypt($_POST['pword']);
+        echo '<script language="javascript">';
+        echo 'alert("message successfully sent".$pWord)';
+        echo '</script>';
 	session_start();
 	$_SESSION['error'] = 1;
 
@@ -30,7 +34,7 @@
         $logStringLI ="Logged in. ".date('m/d/Y h:i:s a', time());
 
         $file = fopen("test.txt","at");
-        $txtLogString = "(".$_SESSION['uName'].")".$roLI['userid']." ".$logStringLI."\n";
+        $txtLogString = session_id().":"."(".$_SESSION['uName'].")".$roLI['userid']." ".$logStringLI."\n";
         fwrite($file,$txtLogString);
         fclose($file);
 	header("Location: ../page/index.php");
