@@ -1,5 +1,7 @@
 <?php
 	include 'dbh.php';
+        include '../php/crypt.php';
+
 	if($_POST['regPassword'] != $_POST['regCheckPW']){
 		echo "<script type='text/javascript'>alert(\"Passwords do not match!\");</script>";
 		header("Location: ../html/signup.php");
@@ -30,7 +32,7 @@
 
 			$catStr = "I provide content under the \"".$_POST['cat']."\" category!";
 			$sql = $conn->prepare("insert into users(categoryid,username,email,password,description) values(?,?,?,?,?)");
-			$sql->bind_param("issss",$uRegCat,$_POST['regUserName'],$_POST['regEMail'],$_POST['regPassword'],$catStr);
+			$sql->bind_param("issss",$uRegCat,$_POST['regUserName'],$_POST['regEMail'],scrypt($_POST['regPassword']),$catStr);
 			$sql->execute();
 
 			$sql->close();
@@ -46,6 +48,21 @@
 			$_SESSION['uID'] = $uID['userid'];
 			$_SESSION['uName'] = $_POST['regUserName'];
 		}
+
+                $getUR = $conn->prepare("select * from users where userid > 1 and username like ?");
+                $getUR->bind_param("s",$_SESSION['uName']);
+                $getUR->execute();
+
+                $reR = $getUR->get_result();
+                $roR = $reR->fetch_assoc();
+
+                $logStringR =session_id().":"."Registered. ".date('m/d/Y h:i:s a', time());
+
+                $file = fopen("test.txt","at");
+                $txtLogString = "(".$_SESSION['uName'].")".$roR['userid']." ".$logStringR."\n";
+                fwrite($file,$txtLogString);
+                fclose($file);
+
 
 		header("Location: ../page/index.php");
 		exit;

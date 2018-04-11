@@ -104,7 +104,7 @@
             
       if($userLoggedIn != 0){
           echo "<a href=\"post.php\"><button class=\"tablinks\" onclick=\"\" style=\"float: left;\">Create Post</button></a>";
-          echo "<button class=\"tablinks\" onclick=\"location.href='profile.php?un=".$uName."';\">".$uName."</button>";
+          echo "<button class=\"tablinks\" onclick=\"location.href='profile.php?un=".htmlspecialchars($uName)."';\">".htmlspecialchars($uName)."</button>";
           echo "<a href=\"../php/signOut.php\"><button class=\"tablinks\" onclick=\"\">Sign out</button></a>";
       }else{
           echo "<a href=\"login.html\"><button class=\"tablinks\" onclick=\"\">log In</button></a>";
@@ -120,7 +120,7 @@
       </div>
     </div>
     <div id="categoryhead">
-     <p><?php echo "<h1>Search Results For '".$patSearch."'</h1>"?>
+     <p><?php echo "<h1>Search Results For '".htmlspecialchars($patSearch)."'</h1>"?>
     </div>
     <br>
     <?php
@@ -137,8 +137,8 @@
       }else{
         echo 
         "<div id=\"creators\">
-          <button onclick=\"location.href='profile.php?un=".$row['username']."';\" style=\"width:100%\"><p><h1>".$row['username']."</h1></p>
-          <p>".$row['description']."</p></button></a>
+          <button onclick=\"location.href='profile.php?un=".htmlspecialchars($row['username'])."';\" style=\"width:100%\"><p><h1>".htmlspecialchars($row['username'])."</h1></p>
+          <p>".htmlspecialchars($row['description'])."</p></button></a>
         </div>";
       }
 

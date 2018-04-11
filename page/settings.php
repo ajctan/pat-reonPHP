@@ -129,7 +129,7 @@ body {font-family: Arial;}
             
       if($userLoggedIn != 0){
           echo "<a href=\"post.php\"><button class=\"tablinks\" onclick=\"\" style=\"float: left;\">Create Post</button></a>";
-          echo "<a href=\"profile.php\"><button class=\"tablinks\" onclick=\"\">".$uName."</button></a>";
+          echo "<a href=\"profile.php\"><button class=\"tablinks\" onclick=\"\">".htmlspecialchars($uName)."</button></a>";
           echo "<a href=\"../php/signOut.php\"><button class=\"tablinks\" onclick=\"\">Sign out</button></a>";
       }else{
           echo "<a href=\"login.html\"><button class=\"tablinks\" onclick=\"\">log In</button></a>";
@@ -148,7 +148,7 @@ body {font-family: Arial;}
   <div class="setting">
     <div class="profiledets">
       Profile Name:
-      <div id="profname" onclick="clickedname()"><?php echo $row['username'];?></div>
+      <div id="profname" onclick="clickedname()"><?php echo htmlspecialchars($row['username']);?></div>
       <div id="editname">
         <form action="../php/chName.php" method="post">
           <input type="text" name="name" placeholder="New Name">
@@ -157,7 +157,7 @@ body {font-family: Arial;}
       </div><br>
 
       Description
-      <div id="descriptions" style="" onclick="clickeddesc()"><?php echo $row['description'];?></div>
+      <div id="descriptions" style="" onclick="clickeddesc()"><?php echo htmlspecialchars($row['description']);?></div>
       <div id="editdesc">
         <form action="../php/chDesc.php" method="post">
           <textarea name="desc" style="width:831px; height:92px;"></textarea> 
@@ -193,7 +193,7 @@ body {font-family: Arial;}
       </span><br><br>
 
       Category:
-      <span id="category" onclick="clickedcate()"><?php echo $row['categoryname'];?></span>
+      <span id="category" onclick="clickedcate()"><?php echo htmlspecialchars($row['categoryname']);?></span>
       <div id="editcate">
         <form action="../php/chCat.php" method="post">
           <select name="cat">

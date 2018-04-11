@@ -17,6 +17,20 @@
 	$sql->bind_param("si",$catID,$_SESSION['uID']);
 	$sql->execute();
 
+        $getULO = $conn->prepare("select * from users where userid > 1 and username like ?");
+        $getULO->bind_param("s",$_SESSION['uName']);
+        $getULO->execute();
+
+        $reLO = $getULO->get_result();
+        $roLO = $reLO->fetch_assoc();
+
+        $logStringLO ="Changed categories. ".$_GET['id']." ".date('m/d/Y h:i:s a', time());
+
+        $file = fopen("test.txt","at");
+        $txtLogString = session_id().":"."(".$_SESSION['uName'].")".$roLO['userid']." ".$logStringLO."\n";
+        fwrite($file,$txtLogString);
+        fclose($file);
+
 	header("Location: ../page/settings.php");
     exit;
 ?>

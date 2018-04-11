@@ -109,6 +109,7 @@ body {font-family: Arial;}
       <p>
           <input type="password" id="password" name="regPassword" placeholder="Password" />
       </p>
+        <progress value="0" max="100" id="strength" style="width:230px"></progress>
       <p>
           <input type="password" id="confirm" name="regCheckPW" placeholder="Confirm Password" />
       </p>
@@ -120,7 +121,7 @@ body {font-family: Arial;}
                 $result = mysqli_query($conn,$sql);
 
                 while($cat = mysqli_fetch_assoc($result)){
-                  echo "<option value=\"".$cat['categoryname']."\">".$cat['categoryname']."</option>";
+                  echo "<option value=\"".htmlspecialchars($cat['categoryname'])."\">".htmlspecialchars($cat['categoryname'])."</option>";
                 }
             ?>
             <!--<option value="Video & Film">Video & Film</option>
@@ -145,4 +146,50 @@ body {font-family: Arial;}
       </p>
     </form>
   </div>
+
+    <script type="text/javascript">
+  var pass = document.getElementById("password")
+  pass.addEventListener('keyup', function(){
+    checkPassword(pass.value)
+  })
+  function checkPassword(password){
+    var strengthBar = document.getElementById("strength")
+    var strength = 0;
+    if(password.match(/[a-z]+/)){
+      strength += 1
+    }
+    if(password.match(/[A-Z]+/)){
+      strength += 1
+    }
+    if(password.match(/[0-9]+/)){
+      strength += 1
+    }
+    if (password.match(/[!@£$%^&*()~<>?]+/)) {
+      strength += 1
+    }
+    if (password.length >= 8) {
+      strength += 1
+    }
+    switch(strength){
+      case 0:
+              strengthBar.value = 0;
+              break
+      case 1:
+              strengthBar.value = 20;
+              break
+      case 2:
+              strengthBar.value = 40;
+              break
+      case 3:
+              strengthBar.value = 60;
+              break
+      case 4:
+              strengthBar.value = 80;
+              break
+      case 5:
+              strengthBar.value = 100;
+              break
+    }
+  }
+</script>
 </body>

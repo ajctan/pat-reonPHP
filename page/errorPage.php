@@ -8,13 +8,7 @@
   if(isset($_SESSION['uID'])){
     $userLoggedIn = $_SESSION['uID'];
     $uName = $_SESSION['uName'];
-  }else{
-    header("Location: login.html");
   }
-  setcookie("stype",$_GET['sid'],time()+3600,"/");
-  setcookie("stun",$_GET['stun'],time()+3600,"/");
-
-
 ?>
 
 <!DOCTYPE html>
@@ -77,30 +71,17 @@ body {font-family: Arial;}
   transform: translateY(25%);
   width: 250px;
 }
-
-#paybutton{
-  background-color: #009933;
-  border-style: ridge;
-  height: 75px;
-  width: 250px;
-}
-#payment{
-  margin: auto;
-    width: 50%;
-    border: 3px solid green;
-    padding: 10px;
-}
 </style>
 </head>
 <body>
 <div class="tab" > <a href="index.php">
-        <button class="tablinks" onclick="openCity(event, 'London')" style="float: left;">PAT-REON</button></a>
+        <button class="tablinks" onclick="" style="float: left;">PAT-REON</button></a>
 
   <?php
             
       if($userLoggedIn != 0){
           echo "<a href=\"post.php\"><button class=\"tablinks\" onclick=\"\" style=\"float: left;\">Create Post</button></a>";
-          echo "<button class=\"tablinks\" onclick=\"location.href='profile.php?un=".htmlspecialchars($uName)."';\">".htmlspecialchars($uName)."</button>";
+          echo "<button class=\"tablinks\" onclick=\"location.href='profile.php?un=".$uName."';\">".$uName."</button>";
           echo "<a href=\"../php/signOut.php\"><button class=\"tablinks\" onclick=\"\">Sign out</button></a>";
       }else{
           echo "<a href=\"login.html\"><button class=\"tablinks\" onclick=\"\">log In</button></a>";
@@ -117,30 +98,11 @@ body {font-family: Arial;}
 
 
 </div>
-<br><br>
-<div id="payment">
-  <form action="../php/sub.php" method="post" style="text-align: center;">
-    Card Number<br>
-    <input type="text" name="cardnum"><br><br>
-    Expiry Date<br>
-    <input type="number" name="year" min="1" max="12" placeholder="mm"> / <input type="number" name="month" min="00" max="18" placeholder="yy"><br><br>
-    CVV<br>
-    <input type="text" name="cardnum"><br><br>
-    <?php
-      switch($_GET['sid']){
-        case 1:
-          echo "<button id=\"paybutton\" type=\"submit\" >Pat for $4.99!</button>";
-          break;
-        case 2:
-          echo "<button id=\"paybutton\" type=\"submit\" >Pat for $9.99!</button>";
-          break;
-        default:
-          echo "<button id=\"paybutton\" type=\"submit\" onclick=\"\" >Pat for $14.99!</button>";
-          break;
-      }
-    ?>
-  </form>
-</div>
+
+<center style="font-size: 60px;">Oops! Something went wrong!</center> 
+<hr>
+
+
 
      
 </body>
