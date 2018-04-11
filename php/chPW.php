@@ -1,9 +1,11 @@
 <?php
 	include 'dbh.php';
+        include '../php/crypt.php';
+
 	session_start();
 	$uPassOld = $_POST['oldpw'];
 
-	$encOldPW = /*encrypt old password*/"";
+	$encOldPW = scrypt($uPassOld);
 
 	if($_POST['newpw1'] != $_POST['newpw2']){
 		$_SESSION['error'] = 2;
@@ -23,7 +25,7 @@
 
 
 	/*encrypt shit here*/
-	$encNewPW = ""; /*encrypted password*/
+	$encNewPW = scrypt($_POST['newpw1']); /*encrypted password*/
 
 	$sql = $conn->prepare("update users set password=? where userid=?");
 	$sql->bind_param("si",$encNewPW,$_SESSION['uID']);
