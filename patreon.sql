@@ -132,7 +132,7 @@ CREATE TABLE `users` (
   `categoryid` int(11) NOT NULL,
   `username` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` longtext NOT NULL,
   `description` varchar(100) NOT NULL,
   PRIMARY KEY (`userid`),
   KEY `categoryid` (`categoryid`),
@@ -159,4 +159,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-10 12:26:57
+-- Dump completed on 2018-04-11 10:57:52
