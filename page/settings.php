@@ -146,6 +146,17 @@ body {font-family: Arial;}
   </div>
 
   <div class="setting">
+    <?php
+      switch($_SESSION['error']){
+        case 1: echo "<p style=\"color:red\" align=\"center\">A user exists with that username!</p>";
+                break;
+        case 2: echo "<p style=\"color:red\" align=\"center\">Please check your password again!</p>";
+                break;
+        default:
+                ;
+      }
+      $_SESSION['error'] = 0;
+    ?>
     <div class="profiledets">
       Profile Name:
       <div id="profname" onclick="clickedname()"><?php echo htmlspecialchars($row['username']);?></div>
