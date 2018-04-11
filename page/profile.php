@@ -5,11 +5,17 @@
   $userLoggedIn = 0;
   $uType = 2;
   $uName = "";
+  if(!isset($_GET['un'])){
+    $_SESSION['error'] = 2;
+    header("Location: index.php");
+  }
   if(isset($_SESSION['uID'])){
   	if($_SESSION['uID'] == 1)
   		header("Location: adminpage.php");
-        if($_SESSION['uID'] != 1 && $_GET['un'] == 'patMachine')
+        if($_SESSION['uID'] != 1 && $_GET['un'] == 'patMachine'){
+                $_SESSION['error'] = 2;
                 header("Location: index.php");
+        }
         
     $userLoggedIn = $_SESSION['uID'];
     $uName = $_SESSION['uName'];

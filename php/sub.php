@@ -2,6 +2,11 @@
 	include 'dbh.php';
         include 'crypt.php';
 	session_start();
+if(!isset($_COOKIE['stype']) || !isset($_COOKIE['stun'])){
+    $_SESSION['error'] = 2;
+    header("Location: ../page/index.php");
+}
+
 
 	if(!isset($_SESSION['uID']))
 		header("Location: ../page/index.php");

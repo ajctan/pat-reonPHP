@@ -11,9 +11,13 @@
   }else{
     header("Location: login.html");
   }
-  setcookie("stype",$_GET['sid'],time()+3600,"/");
-  setcookie("stun",$_GET['stun'],time()+3600,"/");
-
+  if(!isset($_GET['sid']) || !isset($_GET['stun'])){
+    $_SESSION['error'] = 2;
+    header("Location: index.php");
+  }else{
+    setcookie("stype",$_GET['sid'],time()+3600,"/");
+    setcookie("stun",$_GET['stun'],time()+3600,"/");
+  }
 
 ?>
 

@@ -1,5 +1,10 @@
 <?php
   include '../php/dbh.php';
+  session_start();
+  if(isset($_SESSION['uID'])){
+    $_SESSION['error'] = 2;
+    header("Location: index.php");
+  }
 ?>
 
 <!DOCTYPE html>

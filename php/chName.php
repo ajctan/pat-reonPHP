@@ -1,6 +1,11 @@
 <?php
 	include 'dbh.php';
-	session_start();
+	session_start()
+
+    if(!isset($_POST['name'])){
+        $_SESSION['error'] = 2;
+        header("Location: ../page/index.php");
+    }
 	$uName = $_POST['name'];
 
     if($uName === $_SESSION['uName']){

@@ -79,13 +79,21 @@ body {font-family: Arial;}
 
   <?php
       if(isset($_SESSION['error']))
-        if($_SESSION['error'] != 0){
-          $_SESSION['error'] = 0;
+        if($_SESSION['error'] == 1){
           echo '<script type="text/javascript">'; 
           echo 'alert("One or both of your login details may be incorrect! Please check again");'; 
           echo 'window.location.href = "login.html";';
           echo '</script>';
-        }      
+        }elseif($_SESSION['error'] == 2){
+          echo '<script type="text/javascript">'; 
+          echo 'alert("The page you are trying to access is restricted!");'; 
+          echo '</script>';
+        }elseif($_SESSION['error'] == 3){
+          echo '<script type="text/javascript">'; 
+          echo 'alert("There is no search string!");'; 
+          echo '</script>';
+        }
+        $_SESSION['error'] = 0;      
       if($userLoggedIn != 0){
           echo "<a href=\"post.php\"><button class=\"tablinks\" onclick=\"\" style=\"float: left;\">Create Post</button></a>";
           echo "<button class=\"tablinks\" onclick=\"location.href='profile.php?un=".htmlspecialchars($uName)."';\">".htmlspecialchars($uName)."</button>";

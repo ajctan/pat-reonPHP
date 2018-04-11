@@ -9,6 +9,10 @@
     $userLoggedIn = $_SESSION['uID'];
     $uName = $_SESSION['uName'];
   }
+  if(!isset($_POST['patSearch'])){
+    $_SESSION['error'] = 3;
+    header("Location: index.php");
+  }
   $patSearch = $_POST['patSearch'];
 ?>
 

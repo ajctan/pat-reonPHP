@@ -2,6 +2,7 @@
 	include 'dbh.php';
 	session_start();
 	if(!isset($_SESSION['uID']) || $_SESSION['uID'] != 1){
+		$_SESSION['error'] = 2;
 		header("Location: ../page/index.php");
 	}else{
 		$sql = $conn->prepare("DELETE FROM contents WHERE userid=?");

@@ -10,6 +10,9 @@
       header("Location: index.php");
     $userLoggedIn = $_SESSION['uID'];
     $uName = $_SESSION['uName'];
+  }else{
+    $_SESSION['error'] = 2;
+    header("Location: index.php");
   }
 ?>
 

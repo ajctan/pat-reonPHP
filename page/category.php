@@ -125,6 +125,10 @@
      <p><?php echo "<h1>".htmlspecialchars($_GET['cat'])."</h1>"?>
     </div>
     <?php
+      if(!isset($_GET['cat'])){
+        $_SESSION['error'] = 2;
+        header("Location: index.php");
+      }
       $sql = $conn->prepare("select * from users, categories where users.userid NOT LIKE 1 and users.categoryid = categories.categoryid and categories.categoryname like ?");
       $sql->bind_param("s",$_GET['cat']);
 
