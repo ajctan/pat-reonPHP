@@ -232,7 +232,7 @@ body {font-family: Arial;}
       Password:
       <span id="pw" onclick="clickedpw()">Change</span>
       <div id="editpw">
-        <form>
+        <form action="../php/chPW.php" method="post">
           Enter old Password<input name="oldpw" type="password"><br>
           Enter new Password<input name="newpw1" type="password"><br>
           Enter new Password Again<input name="newpw2" type="password"><br>
