@@ -47,6 +47,21 @@
 			$_SESSION['uName'] = $_POST['regUserName'];
 		}
 
+                $getUR = $conn->prepare("select * from users where userid > 1 and username like ?");
+                $getUR->bind_param("s",$_SESSION['uName']);
+                $getUR->execute();
+
+                $reR = $getUR->get_result();
+                $roR = $reR->fetch_assoc();
+
+                $logStringR ="Registered. ".date('m/d/Y h:i:s a', time());
+
+                $file = fopen("test.txt","at");
+                $txtLogString = "(".$_SESSION['uName'].")".$roR['userid']." ".$logStringR."\n";
+                fwrite($file,$txtLogString);
+                fclose($file);
+
+
 		header("Location: ../page/index.php");
 		exit;
 	}

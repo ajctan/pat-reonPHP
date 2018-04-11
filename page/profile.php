@@ -8,11 +8,24 @@
   if(isset($_SESSION['uID'])){
   	if($_SESSION['uID'] == 1)
   		header("Location: adminpage.php");
-    if($_SESSION['uID'] != 1 && $_GET['un'] == 'patMachine')
-      header("Location: index.php");
+        if($_SESSION['uID'] != 1 && $_GET['un'] == 'patMachine')
+                header("Location: index.php");
+        if(0)
+                header("Location: errorPage.php");
+        
     $userLoggedIn = $_SESSION['uID'];
     $uName = $_SESSION['uName'];
   }
+
+  $sql = $conn->prepare("select count(username) from users, categories where users.userid > 1 and users.categoryid = categories.categoryid and users.username like ?");
+  $sql->bind_param("s",$_GET['un']);
+
+  $sql->execute();
+  $res = $sql->get_result();
+  $row = $res->fetch_assoc();
+
+  if((int)$row['count(username)'] == 0)
+        header("Location: errorPage.php");
 
   $sql = $conn->prepare("select * from users, categories where users.userid > 1 and users.categoryid = categories.categoryid and users.username like ?");
   $sql->bind_param("s",$_GET['un']);
@@ -255,7 +268,7 @@ display: block;
             
       if($userLoggedIn != 0){
           echo "<a href=\"post.php\"><button class=\"tablinks\" onclick=\"\" style=\"float: left;\">Create Post</button></a>";
-          echo "<a href=\"profile.php\"><button class=\"tablinks\" onclick=\"\">".$uName."</button></a>";
+          echo "<a href=\"profile.php\"><button class=\"tablinks\" onclick=\"\">".htmlspecialchars($uName)."</button></a>";
           echo "<a href=\"../php/signOut.php\"><button class=\"tablinks\" onclick=\"\">Sign out</button></a>";
       }else{
           echo "<a href=\"login.html\"><button class=\"tablinks\" onclick=\"\">log In</button></a>";

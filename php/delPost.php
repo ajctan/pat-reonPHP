@@ -12,6 +12,21 @@
 			$sql->bind_param("i",$_GET['pid']);
 		}
 		$sql->execute();
+
+                $getULO = $conn->prepare("select * from users where userid > 1 and username like ?");
+                $getULO->bind_param("s",$_SESSION['uName']);
+                $getULO->execute();
+
+                $reLO = $getULO->get_result();
+                $roLO = $reLO->fetch_assoc();
+
+                $logStringLO ="Delete post. ".date('m/d/Y h:i:s a', time());
+
+                $file = fopen("test.txt","at");
+                $txtLogString = "(".$_SESSION['uName'].")".$roLO['userid']." ".$logStringLO."\n";
+                fwrite($file,$txtLogString);
+                fclose($file);
+
 		header("Location: ../page/profile.php?un=".$_SESSION['uName']);
 	}
 ?>

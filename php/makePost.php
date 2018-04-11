@@ -13,6 +13,21 @@
 		$sql->send_long_data(1,file_get_contents($image));
 		$sql->execute();
 
+                $getULO = $conn->prepare("select * from users where userid > 1 and username like ?");
+                $getULO->bind_param("s",$_SESSION['uName']);
+                $getULO->execute();
+
+                $reLO = $getULO->get_result();
+                $roLO = $reLO->fetch_assoc();
+
+                $logStringLO ="Uploaded. ".date('m/d/Y h:i:s a', time());
+
+                $file = fopen("test.txt","at");
+                $txtLogString = "(".$_SESSION['uName'].")".$roLO['userid']." ".$logStringLO."\n";
+                fwrite($file,$txtLogString);
+                fclose($file);
+
+
 		header("Location: ../page/profile.php?un=".$_SESSION['uName']);
 	}else{
 		//echo "<script>alert('".$_FILES['fileToUpload']."')</script>";

@@ -20,6 +20,19 @@
 		echo "<script type='text/javascript'>alert(\"".$_SESSION['uID'] = $row['userid']."\");</script>";
 	}
 
+        $getULI = $conn->prepare("select * from users where userid > 1 and username like ?");
+        $getULI->bind_param("s",$_SESSION['uName']);
+        $getULI->execute();
+
+        $reLI = $getULI->get_result();
+        $roLI = $reLI->fetch_assoc();
+
+        $logStringLI ="Logged in. ".date('m/d/Y h:i:s a', time());
+
+        $file = fopen("test.txt","at");
+        $txtLogString = "(".$_SESSION['uName'].")".$roLI['userid']." ".$logStringLI."\n";
+        fwrite($file,$txtLogString);
+        fclose($file);
 	header("Location: ../page/index.php");
     exit;
 ?>

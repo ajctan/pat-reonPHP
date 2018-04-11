@@ -18,6 +18,30 @@ USE `patreon`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `archive`
+--
+
+DROP TABLE IF EXISTS `archive`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `archive` (
+  `sessionID` varchar(750) NOT NULL,
+  `userid` varchar(45) NOT NULL,
+  `log` longtext,
+  PRIMARY KEY (`sessionID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `archive`
+--
+
+LOCK TABLES `archive` WRITE;
+/*!40000 ALTER TABLE `archive` DISABLE KEYS */;
+/*!40000 ALTER TABLE `archive` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `categories`
 --
 
@@ -135,4 +159,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-03 11:10:03
+-- Dump completed on 2018-04-10 12:26:57

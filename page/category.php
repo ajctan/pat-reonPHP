@@ -97,33 +97,35 @@
     </style>
     </head>
     <body>
-    <div class="tab" >
-      <a href="index.php"><button class="tablinks" onclick="" style="float: left;">PAT-REON</button></a>
+    <div class="tab" > <a href="index.php">
+        <button class="tablinks" onclick="openCity(event, 'London')" style="float: left;">PAT-REON</button></a>
 
   <?php
             
       if($userLoggedIn != 0){
           echo "<a href=\"post.php\"><button class=\"tablinks\" onclick=\"\" style=\"float: left;\">Create Post</button></a>";
-          echo "<button class=\"tablinks\" onclick=\"location.href='profile.php?un=".$uName."';\">".$uName."</button>";
+          echo "<button class=\"tablinks\" onclick=\"location.href='profile.php?un=".htmlspecialchars($uName)."';\">".htmlspecialchars($uName)."</button>";
           echo "<a href=\"../php/signOut.php\"><button class=\"tablinks\" onclick=\"\">Sign out</button></a>";
       }else{
           echo "<a href=\"login.html\"><button class=\"tablinks\" onclick=\"\">log In</button></a>";
           echo "<a href=\"signup.php\"><button class=\"tablinks\" onclick=\"\">Sign Up</button></a>";
       }
   ?>
-      <a href="categories.php"><button class="tablinks" onclick="">Explore Creators</button></a>
-      <div style="float: right; box-sizing: border-box;">
-       <form action="search.php" method="post">
+  <a href="categories.php"><button class="tablinks" onclick="">Explore Creators</button></a>
+  <div style="float: right; box-sizing: border-box;">
+   <form action="search.php" method="post">
      <input type="text" placeholder="Search.." name="patSearch">
      <button type="submit">search</button>
    </form>
-      </div>
-    </div>
+  </div>
+
+
+</div>
     <div id="categoryhead">
      <p><?php echo "<h1>".htmlspecialchars($_GET['cat'])."</h1>"?>
     </div>
     <?php
-      $sql = $conn->prepare("select * from users, categories where users.categoryid = categories.categoryid and categories.categoryname like ?");
+      $sql = $conn->prepare("select * from users, categories where users.userid NOT LIKE 1 and users.categoryid = categories.categoryid and categories.categoryname like ?");
       $sql->bind_param("s",$_GET['cat']);
 
       $sql->execute();
@@ -134,7 +136,7 @@
       }else{
         echo 
         "<div id=\"creators\">
-          <button onclick=\"location.href='profile.php?un=".$row['username']."';\" style=\"width:100%\"><p><h1>".htmlspecialchars($row['username'])."</h1></p>
+          <button onclick=\"location.href='profile.php?un=".htmlspecialchars($row['username'])."';\" style=\"width:100%\"><p><h1>".htmlspecialchars($row['username'])."</h1></p>
           <p>".htmlspecialchars($row['description'])."</p></button></a>
         </div>";
       }
