@@ -1,9 +1,25 @@
 <?php
 	include 'dbh.php';
+        include 'crypt.php';
 	session_start();
 
 	if(!isset($_SESSION['uID']))
 		header("Location: ../page/index.php");
+        $rawPW = $_SESSION['userpw'];
+        $encryptPW = scrypt($rawPW);
+
+        $sql = $conn->prepare("select count(*) from users where username=? and password=?");
+        $sql->bind_param("ss",$_SESSION['uName'],$encryptPW);
+        $sql->execute();
+
+        $res = $sql->get_result();
+        $row = $res->fetch_assoc();
+
+        if($row['count(*)'] == 0){
+            $_SESSION['error'] = 1;
+            header("Location: ../page/payment.php?sid=".$_COOKIE['stype']."&stun=".$_COOKIE['stun']);
+        }
+
 
 	$getUN = $conn->prepare("select * from users where userid > 1 and username like ?");
 	$getUN->bind_param("s",$_COOKIE['stun']);

@@ -10,14 +10,12 @@
   		header("Location: adminpage.php");
         if($_SESSION['uID'] != 1 && $_GET['un'] == 'patMachine')
                 header("Location: index.php");
-        if(0)
-                header("Location: errorPage.php");
         
     $userLoggedIn = $_SESSION['uID'];
     $uName = $_SESSION['uName'];
   }
 
-  $sql = $conn->prepare("select count(username) from users, categories where users.userid > 1 and users.categoryid = categories.categoryid and users.username like ?");
+  $sql = $conn->prepare("select count(username) from users, categories where users.categoryid = categories.categoryid and users.username like ?");
   $sql->bind_param("s",$_GET['un']);
 
   $sql->execute();
@@ -388,7 +386,7 @@ display: block;
                 }
           			echo "</div>";
           			echo "<center></center><img id=\"postimg\" src=\"data:image/".htmlspecialchars($postRow['content_ext']).";base64,".base64_encode( $postRow['content_file'] )."\">";
-          			echo "<p>".specialhtmlchars($postRow['content_message'])."</p>";
+          			echo "<p>".htmlspecialchars($postRow['content_message'])."</p>";
           			break;
           		}
           	default:

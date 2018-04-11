@@ -127,6 +127,14 @@ body {font-family: Arial;}
     CVV<br>
     <input type="text" name="cardnum"><br><br>
     <?php
+        if($_SESSION['error'] != 0){
+            $_SESSION['error'] = 0;
+            echo "<p style=\"color:red\" align=\"center\">Oops! Try again!</p>";
+        }
+    ?>
+Password<br>
+    <input type="password" name="userpw"><br><br>
+    <?php
       switch($_GET['sid']){
         case 1:
           echo "<button id=\"paybutton\" type=\"submit\" >Pat for $4.99!</button>";

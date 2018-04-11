@@ -12,7 +12,7 @@
   if(!isset($_SESSION['uID']) || $_SESSION['uID'] != 1)
     header("Location: index.php");
   $sql = $conn->prepare("select * from users, categories where users.categoryid = categories.categoryid and users.username like ?");
-  $sql->bind_param("s",$_GET['un']);
+  $sql->bind_param("s",$_SESSION['uName']);
 
   $sql->execute();
   $res = $sql->get_result();
@@ -307,7 +307,7 @@ display: block;
             
       if($userLoggedIn != 0){
           echo "<a href=\"post.php\"><button class=\"tablinks\" onclick=\"\" style=\"float: left;\">Create Post</button></a>";
-          echo "<a href=\"profile.php\"><button class=\"tablinks\" onclick=\"\">".$uName."</button></a>";
+          echo "<a href=\"profile.php\"><button class=\"tablinks\" onclick=\"\">".htmlspecialchars($uName)."</button></a>";
           echo "<a href=\"../php/signOut.php\"><button class=\"tablinks\" onclick=\"\">Sign out</button></a>";
       }else{
           echo "<a href=\"login.html\"><button class=\"tablinks\" onclick=\"\">log In</button></a>";
@@ -325,10 +325,10 @@ display: block;
   <div class="user">
     <p id ="pagehead">
     <img class='pageLogo' src='../img/user.png'></p>
-    <p id="pageTitle"><?php echo "<h1>".$row['username']."</h1>"?></p>     
+    <p id="pageTitle"><?php echo "<h1>".htmlspecialchars($row['username'])."</h1>"?></p>     
     <hr>
       <p class="pageLegend">
-      <?php echo $row['categoryname']?>      
+      <?php echo htmlspecialchars($row['categoryname'])." pats are mine to manage!!!"?>      
       </p>
   </div>
   <div class="descriptions">
@@ -346,7 +346,7 @@ display: block;
         $sql->execute();
         $getRes = $sql->get_result();
         while($res = $getRes->fetch_assoc())
-          echo "<div class=\"list\" onclick=\"\">".$res['username']."<button class=\"delbutton\" type\"button\" style=\"float: right;\"onclick=\"location.href='../php/delUser.php?id=".$res['userid']."';\">Delete</button></div>";
+          echo "<div class=\"list\" onclick=\"\">".htmlspecialchars($res['username'])."<button class=\"delbutton\" type\"button\" style=\"float: right;\"onclick=\"location.href='../php/delUser.php?id=".htmlspecialchars($res['userid'])."';\">Delete</button></div>";
       ?>
       </div>
       <div id="postlist">
@@ -358,12 +358,12 @@ display: block;
             $getRes = $sql->get_result();
             while($res = $getRes->fetch_assoc()){
               echo "<div id=\"posts\">";
-              echo "<h2 id=\"poster\">".$res['username']."</h2>";
+              echo "<h2 id=\"poster\">".htmlspecialchars($res['username'])."</h2>";
               echo "<div class=\"popup\"><button id=\"editpost\" onclick=\"myFunction('myPopup1')\"><img id=\"editimg\" src=\"../img/settings.png\"></button><br>";
-              echo "<span class=\"popuptext\" id=\"myPopup1\"><button onclick=\"location.href='../php/delPost.php?pid=".$res['contentid']."';\"style=\"border-style: none;background-color: #555;color: white;cursor: pointer;\">Delete</button></span>";
+              echo "<span class=\"popuptext\" id=\"myPopup1\"><button onclick=\"location.href='../php/delPost.php?pid=".htmlspecialchars($res['contentid'])."';\"style=\"border-style: none;background-color: #555;color: white;cursor: pointer;\">Delete</button></span>";
               echo "</div>";
-              echo "<center></center><img id=\"postimg\" src=data:image/".$res['content_ext'].";base64,".base64_encode( $res['content_file'] ).">";
-              echo "<p>".$res['content_message']."</p>";
+              echo "<center></center><img id=\"postimg\" src=data:image/".htmlspecialchars($res['content_ext']).";base64,".base64_encode( $res['content_file'] ).">";
+              echo "<p>".htmlspecialchars($res['content_message'])."</p>";
               echo "</div>";
             }
           ?>
