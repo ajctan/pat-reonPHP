@@ -96,7 +96,7 @@ body {font-family: Arial;}
     <a href="categories.html"><button class="tablinks" onclick="">Explore Creators</button></a> 	
     <div style="float: right; box-sizing: border-box;">
       <form action="search.php" method="post">
-        <input type="text" placeholder="Search.." name="patSearch">
+        <input type="text" placeholder="Search.." name="patSearch" autocomplete="off">
         <button type="submit">search</button>
       </form>
     </div>
@@ -106,17 +106,17 @@ body {font-family: Arial;}
       <h1>Sign-up</h1>
       <hr>
       <p>
-          <input type="text" id="username" name="regUserName" placeholder="Username" />
+          <input type="text" id="username" name="regUserName" placeholder="Username" autocomplete="off" />
       </p>
       <p>
-          <input type="text" id="email" name="regEMail" placeholder="Email" />
+          <input type="text" id="email" name="regEMail" placeholder="Email" autocomplete="off"/>
       </p>
       <p>
-          <input type="password" id="password" name="regPassword" placeholder="Password" />
+          <input type="password" id="password" name="regPassword" placeholder="Password" autocomplete="off"/>
       </p>
         <progress value="0" max="100" id="strength" style="width:230px"></progress>
       <p>
-          <input type="password" id="confirm" name="regCheckPW" placeholder="Confirm Password" />
+          <input type="password" id="confirm" name="regCheckPW" placeholder="Confirm Password" autocomplete="off"/>
       </p>
       <p>
           Select Your Category:
@@ -147,19 +147,31 @@ body {font-family: Arial;}
           </select>
       </p>
       <p>
-          <button id="submitbutton" type="submit">Sign Up</button>
+          <button id="submitbutton" type="submit" disabled="true">Sign Up</button>
       </p>
     </form>
   </div>
 
     <script type="text/javascript">
   var pass = document.getElementById("password")
+  var email = document.getElementById("email")
   pass.addEventListener('keyup', function(){
     checkPassword(pass.value)
   })
+  email.addEventListener('keyup', function(){
+    validateEmail(email.value)
+  })
+  function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    document.getElementById('submitbutton').disabled = 'disabled';
+    if(re.test(email))
+        document.getElementById('submitbutton').disabled = false;
+        
+  }
   function checkPassword(password){
     var strengthBar = document.getElementById("strength")
     var strength = 0;
+    document.getElementById('submitbutton').disabled = 'disabled';
     if(password.match(/[a-z]+/)){
       strength += 1
     }
@@ -174,6 +186,9 @@ body {font-family: Arial;}
     }
     if (password.length >= 8) {
       strength += 1
+      document.getElementById('submitbutton').disabled = false;
+    } else {
+       document.getElementById('submitbutton').disabled = 'disabled';
     }
     switch(strength){
       case 0:

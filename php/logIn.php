@@ -13,13 +13,16 @@
 	$sql->execute();
 	$res = $sql->get_result();
 	$row = $res->fetch_assoc();
+
 	if($row['userid'] != null){
 
 		$_SESSION['error'] = 0;
 		$_SESSION['uID'] = $row['userid'];
 		$_SESSION['uName'] = $row['username'];
 
-		$getULI = $conn->prepare("select * from users where userid > 1 and username like ?");
+		
+	}
+        $getULI = $conn->prepare("select * from users where userid > 1 and username like ?");
         $getULI->bind_param("s",$_SESSION['uName']);
         $getULI->execute();
 
@@ -29,10 +32,13 @@
         $logStringLI ="Logged in. ".date('m/d/Y h:i:s a', time());
 
         $file = fopen("test.txt","at");
-        $txtLogString = session_id().":"."(".$_SESSION['uName'].")".$roLI['userid']." ".$logStringLI."\n";
+        if($_SESSION['uName'].strlen() > 0){
+            $txtLogString = session_id().":"."(".$_SESSION['uName'].")".$roLI['userid']." ".$logStringLI."\n";
+        } else {
+            $txtLogString = session_id().":"."(UNREGISTERED USER)".$roLI['userid']." ".$logStringLI." Attempt Failed\n";
+        }
         fwrite($file,$txtLogString);
         fclose($file);
-	}
 	header("Location: ../page/index.php");
     exit;
 ?>

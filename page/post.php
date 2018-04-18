@@ -109,7 +109,7 @@
   <a href="categories.php"><button class="tablinks" onclick="">Explore Creators</button></a>
   <div style="float: right; box-sizing: border-box;">
    <form action="search.php" method="post">
-     <input type="text" placeholder="Search.." name="patSearch">
+     <input type="text" placeholder="Search.." name="patSearch" autocomplete="off">
      <button type="submit">search</button>
    </form>
   </div>
@@ -130,7 +130,7 @@
               </select><br><br>
 
               <p>Select image to upload:</p>
-              <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
+              <input type="file" name="fileToUpload" id="fileToUpload" autocomplete="off"><br><br>
               <input id="submitbutton" type="submit" value="Post" name="submit">
               
             

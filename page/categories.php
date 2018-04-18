@@ -114,7 +114,7 @@ body {font-family: Arial;}
   ?>
   <div style="float: right; box-sizing: border-box;">
    <form action="search.php" method="post">
-     <input type="text" placeholder="Search.." name="patSearch">
+     <input type="text" placeholder="Search.." name="patSearch" autocomplete="off">
      <button type="submit">search</button>
    </form>
   </div>

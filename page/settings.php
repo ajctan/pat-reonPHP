@@ -140,7 +140,7 @@ body {font-family: Arial;}
     <a href="categories.html"><button class="tablinks" onclick="">Explore Creators</button></a>   
     <div style="float: right; box-sizing: border-box;">
       <form action="search.php" method="post">
-      <input type="text" placeholder="Search.." name="patSearch">
+      <input type="text" placeholder="Search.." name="patSearch" autocomplete="off">
       <button type="submit">search</button>
       </form>
     </div>
@@ -163,7 +163,7 @@ body {font-family: Arial;}
       <div id="profname" onclick="clickedname()"><?php echo htmlspecialchars($row['username']);?></div>
       <div id="editname">
         <form action="../php/chName.php" method="post">
-          <input type="text" name="name" placeholder="New Name">
+          <input type="text" name="name" placeholder="New Name" autocomplete="off">
           <button id="submitname" type="submit" >save</button>
         </form>
       </div><br>
@@ -176,33 +176,6 @@ body {font-family: Arial;}
           <button id="submitdesc" type="submit" >save</button>
         </form>
       </div><br>
-
-      <div id="levels">
-
-      Patreon Level 1
-      <span id="lvl1" onclick="clickedlvl1()">69</span>
-      <span id="editlvl1">
-        <form>
-          <input type="text" name="lvl1sub" value="New amount">
-          <button id="submitlvl1" type="submit" >save</button>
-        </form>
-      </span>
-      Patreon Level 2
-      <span id="lvl2" onclick="clickedlvl2()">169</span>
-      <span id="editlvl2">
-        <form>
-          <input type="text" name="lvl2sublvl3sub" value="New amount">
-          <button id="submitlvl2" type="submit" >save</button>
-        </form>
-      </span>
-      Patreon Level 3
-      <span id="lvl3" onclick="clickedlvl3()">1069</span>
-      <span id="editlvl3">
-        <form>
-          <input type="text" name="lvl3sublvl3sub" value="New amount">
-          <button id="submitlvl3" type="submit" >save</button>
-        </form>
-      </span><br><br>
 
       Category:
       <span id="category" onclick="clickedcate()"><?php echo htmlspecialchars($row['categoryname']);?></span>
@@ -234,9 +207,9 @@ body {font-family: Arial;}
       <span id="pw" onclick="clickedpw()">Change</span>
       <div id="editpw">
         <form action="../php/chPW.php" method="post">
-          Enter old Password<input name="oldpw" type="password"><br>
-          Enter new Password<input name="newpw1" type="password"><br>
-          Enter new Password Again<input name="newpw2" type="password"><br>
+          Enter old Password<input name="oldpw" type="password" autocomplete="off"><br>
+          Enter new Password<input name="newpw1" type="password" autocomplete="off"><br>
+          Enter new Password Again<input name="newpw2" type="password" autocomplete="off"><br>
           <button id="submitpw" type="submit">Enter</button>
         </form>
 
