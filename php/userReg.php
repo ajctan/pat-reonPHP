@@ -4,7 +4,10 @@
 
 	if($_POST['regPassword'] != $_POST['regCheckPW']){
 		echo "<script type='text/javascript'>alert(\"Passwords do not match!\");</script>";
-		header("Location: ../html/signup.php");
+		header("Location: ../page/signup.php");
+        }else if($_POST['regPassword'].strlen() < 8){
+                echo "<script type='text/javascript'>alert(\"Invalid password!\");</script>";
+		header("Location: ../page/signup.php");
 	}else{
 		session_start();
 		

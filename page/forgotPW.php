@@ -8,17 +8,7 @@
   if(isset($_SESSION['uID'])){
     $userLoggedIn = $_SESSION['uID'];
     $uName = $_SESSION['uName'];
-  }else{
-    header("Location: login.html");
   }
-  if(!isset($_GET['sid']) || !isset($_GET['stun'])){
-    $_SESSION['error'] = 2;
-    header("Location: index.php");
-  }else{
-    setcookie("stype",$_GET['sid'],time()+3600,"/");
-    setcookie("stun",$_GET['stun'],time()+3600,"/");
-  }
-
 ?>
 
 <!DOCTYPE html>
@@ -82,29 +72,25 @@ body {font-family: Arial;}
   width: 250px;
 }
 
-#paybutton{
-  background-color: #009933;
+#submitbutton{
+  background-color: gray;
   border-style: ridge;
-  height: 75px;
-  width: 250px;
+  height: 50px;
+  width: 200px;
 }
-#payment{
-  margin: auto;
-    width: 50%;
-    border: 3px solid green;
-    padding: 10px;
-}
+
+
 </style>
 </head>
 <body>
 <div class="tab" > <a href="index.php">
-        <button class="tablinks" onclick="openCity(event, 'London')" style="float: left;">PAT-REON</button></a>
+        <button class="tablinks" onclick="" style="float: left;">PAT-REON</button></a>
 
   <?php
             
       if($userLoggedIn != 0){
           echo "<a href=\"post.php\"><button class=\"tablinks\" onclick=\"\" style=\"float: left;\">Create Post</button></a>";
-          echo "<button class=\"tablinks\" onclick=\"location.href='profile.php?un=".htmlspecialchars($uName)."';\">".htmlspecialchars($uName)."</button>";
+          echo "<button class=\"tablinks\" onclick=\"location.href='profile.php?un=".$uName."';\">".$uName."</button>";
           echo "<a href=\"../php/signOut.php\"><button class=\"tablinks\" onclick=\"\">Sign out</button></a>";
       }else{
           echo "<a href=\"login.html\"><button class=\"tablinks\" onclick=\"\">log In</button></a>";
@@ -121,39 +107,34 @@ body {font-family: Arial;}
 
 
 </div>
-<br><br>
-<div id="payment">
-  <form action="../php/sub.php" method="post" style="text-align: center;">
-    Card Number<br>
-    <input type="text" name="cardnum" autocomplete="off"><br><br>
-    Expiry Date<br>
-    <input type="number" name="year" min="1" max="12" placeholder="mm" autocomplete="off"> / <input type="number" name="month" min="00" max="18" placeholder="yy" autocomplete="off"><br><br>
-    CVV<br>
-    <input type="text" name="cardnum" autocomplete="off"><br><br>
-    <?php
-        if($_SESSION['error'] != 0){
-            $_SESSION['error'] = 0;
-            echo "<p style=\"color:red\" align=\"center\">Oops! Try again!</p>";
-        }
-    ?>
-Password<br>
-    <input type="password" name="userpw"><br><br>
-    <?php
-      switch($_GET['sid']){
-        case 1:
-          echo "<button id=\"paybutton\" type=\"submit\" >Pat for $4.99!</button>";
-          break;
-        case 2:
-          echo "<button id=\"paybutton\" type=\"submit\" >Pat for $9.99!</button>";
-          break;
-        default:
-          echo "<button id=\"paybutton\" type=\"submit\" onclick=\"\" >Pat for $14.99!</button>";
-          break;
-      }
-    ?>
-  </form>
-</div>
+
+  <center>
+<form action="../php/renewPW.php" method="post">
+  <p style="font-size:25px;">Input Email Used</p>
+  <input type="text" id="email" name="em" autocomplete="off"><br><br>
+  <button id="submitbutton" action="alertme()" type="submit">Send Email</button><br><br>
+</form>
+  </center>
+
+<hr>
+
+
 
      
 </body>
+<script>
+  function alertme(){
+    var mail = document.getElementById("email")
+
+    validateEmail(mail.value)
+}
+  function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    if(re.test(email))
+       alert("Email Sent"); 
+     else
+       alert("invalid Email");
+  }
+    
+</script>
 </html> 
