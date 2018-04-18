@@ -84,11 +84,11 @@ body {font-family: Arial;}
           echo 'alert("One or both of your login details may be incorrect! Please check again");'; 
           echo 'window.location.href = "login.html";';
           echo '</script>';
-        }elseif($_SESSION['error'] == 2){
+        }else if($_SESSION['error'] == 2){
           echo '<script type="text/javascript">'; 
           echo 'alert("The page you are trying to access is restricted!");'; 
           echo '</script>';
-        }elseif($_SESSION['error'] == 3){
+        }else if($_SESSION['error'] == 3){
           echo '<script type="text/javascript">'; 
           echo 'alert("There is no search string!");'; 
           echo '</script>';
